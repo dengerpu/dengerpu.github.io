@@ -227,6 +227,139 @@
 
 
   
+    <article id="post-hero博客搭建" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="hexo博客搭建"><a href="#hexo博客搭建" class="headerlink" title="hexo博客搭建"></a>hexo博客搭建</h1><h2 id="1-安装node-js"><a href="#1-安装node-js" class="headerlink" title="1.安装node.js"></a>1.安装node.js</h2><p>官网下载地址：<a target="_blank" rel="noopener" href="https://nodejs.org/en/">https://nodejs.org/en/</a></p>
+<p><img src="C:\Users\Administrator.SC-201902031211\AppData\Roaming\Typora\typora-user-images\image-20220626211032683.png" alt="image-20220626211032683"></p>
+<p>win+r  输入 cmd进入命令行，查看node版本</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">node -v  </span><br><span class="line">npm -v</span><br></pre></td></tr></table></figure>
+
+<p><img src="C:\Users\Administrator.SC-201902031211\AppData\Roaming\Typora\typora-user-images\image-20220626211351736.png" alt="image-20220626211351736"></p>
+<p>安装cnpm,使用国内镜像淘宝</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g cnpm --registry=https://registry.npm.taobao.org</span><br></pre></td></tr></table></figure>
+
+<p><img src="C:\Users\Administrator.SC-201902031211\AppData\Roaming\Typora\typora-user-images\image-20220626211846244.png" alt="image-20220626211846244"></p>
+<h2 id="2-安装hexo-cli"><a href="#2-安装hexo-cli" class="headerlink" title="2.安装hexo-cli"></a>2.安装hexo-cli</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cnpm install -g hexo-cli</span><br></pre></td></tr></table></figure>
+
+<p>验证是否安装成功</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo -v</span><br></pre></td></tr></table></figure>
+
+
+
+<p><img src="C:\Users\Administrator.SC-201902031211\AppData\Roaming\Typora\typora-user-images\image-20220626212125717.png" alt="image-20220626212125717"></p>
+<h2 id="3-搭建博客"><a href="#3-搭建博客" class="headerlink" title="3.搭建博客"></a>3.搭建博客</h2><p>创建blog文件夹（也可直接右键新建文件夹）,并进入这个目录</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkdir blog</span><br><span class="line">cd blog</span><br></pre></td></tr></table></figure>
+
+<p>初始化博客</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo init</span><br></pre></td></tr></table></figure>
+
+<p><img src="C:\Users\Administrator.SC-201902031211\AppData\Roaming\Typora\typora-user-images\image-20220626213331108.png" alt="image-20220626213331108"></p>
+<p>启动博客(hexo start)</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo s</span><br></pre></td></tr></table></figure>
+
+<p><img src="C:\Users\Administrator.SC-201902031211\AppData\Roaming\Typora\typora-user-images\image-20220626213626123.png" alt="image-20220626213626123"></p>
+<p>访问地址：<a target="_blank" rel="noopener" href="http://localhost:4000/">http://localhost:4000/</a></p>
+<p>发表文章</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo n &quot;我的第一篇博客文章&quot;</span><br></pre></td></tr></table></figure>
+
+<p><img src="C:\Users\Administrator.SC-201902031211\AppData\Roaming\Typora\typora-user-images\image-20220626213848753.png" alt="image-20220626213848753"></p>
+<p>对source_posts\我的第一篇博客文章.md进行修改</p>
+<p>清理</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br></pre></td></tr></table></figure>
+
+<p>生成文章(hex generate)</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo g</span><br></pre></td></tr></table></figure>
+
+<p><img src="C:\Users\Administrator.SC-201902031211\AppData\Roaming\Typora\typora-user-images\image-20220626214413405.png" alt="image-20220626214413405"></p>
+<p>重新开启服务器,输入网址就可以看到发表的文章</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo s</span><br></pre></td></tr></table></figure>
+
+<p><img src="C:\Users\Administrator.SC-201902031211\AppData\Roaming\Typora\typora-user-images\image-20220626214648677.png" alt="image-20220626214648677"></p>
+<h2 id="4-博客部署到github"><a href="#4-博客部署到github" class="headerlink" title="4.博客部署到github"></a>4.博客部署到github</h2><h3 id="1-登陆github创建一个新仓库"><a href="#1-登陆github创建一个新仓库" class="headerlink" title="1.登陆github创建一个新仓库"></a>1.登陆github创建一个新仓库</h3><p>注意：仓库名字：域名.github.io</p>
+<p><img src="C:\Users\Administrator.SC-201902031211\AppData\Roaming\Typora\typora-user-images\image-20220626215356777.png" alt="image-20220626215356777"></p>
+<h3 id="2-创建成之后-安装hexo-deployer-git"><a href="#2-创建成之后-安装hexo-deployer-git" class="headerlink" title="2.创建成之后,安装hexo-deployer-git"></a>2.创建成之后,安装hexo-deployer-git</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cnpm install --save hexo-deployer-git</span><br></pre></td></tr></table></figure>
+
+<p><img src="C:\Users\Administrator.SC-201902031211\AppData\Roaming\Typora\typora-user-images\image-20220626215632470.png" alt="image-20220626215632470"></p>
+<h3 id="3-在blog文件夹下修改-config-yml"><a href="#3-在blog文件夹下修改-config-yml" class="headerlink" title="3.在blog文件夹下修改_config.yml"></a>3.在blog文件夹下修改_config.yml</h3><p>修改_config.yml文件末尾的内容</p>
+<p>repo里面填写github仓库地址</p>
+<p>branch 填写分支</p>
+<p><img src="C:\Users\Administrator.SC-201902031211\AppData\Roaming\Typora\typora-user-images\image-20220626220034307.png" alt="image-20220626220034307"></p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">&#x27;git&#x27;</span></span><br><span class="line">  <span class="attr">repo:</span> <span class="string">&#x27;https://github.com/dengerpu/vip.github.io.git&#x27;</span></span><br><span class="line">  <span class="attr">branch:</span> <span class="string">&#x27;master&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="C:\Users\Administrator.SC-201902031211\AppData\Roaming\Typora\typora-user-images\image-20220626220150106.png" alt="image-20220626220150106"></p>
+<h3 id="4-部署到远端"><a href="#4-部署到远端" class="headerlink" title="4.部署到远端"></a>4.部署到远端</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo d</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-访问"><a href="#5-访问" class="headerlink" title="5.访问"></a>5.访问</h3><p>地址:<a target="_blank" rel="noopener" href="https://vip.github.io/">https://vip.github.io</a></p>
+<p>更改后的地址:<a target="_blank" rel="noopener" href="https://dengerpu.github.io/">https://dengerpu.github.io</a></p>
+<p>最后发现vip域名被占用了，就换了个域名重新部署到远端（更改下仓库名，和_config.yml里面的配置，再次部署到远端即可 hexo d）</p>
+<h2 id="5更改博客主题"><a href="#5更改博客主题" class="headerlink" title="5更改博客主题"></a>5更改博客主题</h2><p>地址：<a target="_blank" rel="noopener" href="https://github.com/litten/hexo-theme-yilia">https://github.com/litten/hexo-theme-yilia</a></p>
+<h3 id="1-下载主题"><a href="#1-下载主题" class="headerlink" title="1.下载主题"></a>1.下载主题</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/litten/hexo-theme-yilia.git themes/yilia</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-修改-config-yml这个文件"><a href="#2-修改-config-yml这个文件" class="headerlink" title="2.修改_config.yml这个文件"></a>2.修改_config.yml这个文件</h3><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">theme:</span> <span class="string">yilia</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p><img src="C:\Users\Administrator.SC-201902031211\AppData\Roaming\Typora\typora-user-images\image-20220626222203188.png" alt="image-20220626222203188"></p>
+<h3 id="3-重新清理，生成"><a href="#3-重新清理，生成" class="headerlink" title="3.重新清理，生成"></a>3.重新清理，生成</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo g</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-重新开启博客服务器"><a href="#4-重新开启博客服务器" class="headerlink" title="4.重新开启博客服务器"></a>4.重新开启博客服务器</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo s</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-推到远端"><a href="#5-推到远端" class="headerlink" title="5.推到远端"></a>5.推到远端</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo d</span><br></pre></td></tr></table></figure>
+
+<h2 id="6-博客常用命令"><a href="#6-博客常用命令" class="headerlink" title="6.博客常用命令"></a>6.博客常用命令</h2><h3 id="Create-a-new-post（发表文章）"><a href="#Create-a-new-post（发表文章）" class="headerlink" title="Create a new post（发表文章）"></a>Create a new post（发表文章）</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new &quot;My New Post&quot;</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server（运行服务器）"><a href="#Run-server（运行服务器）" class="headerlink" title="Run server（运行服务器）"></a>Run server（运行服务器）</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files（发送到服务器）"><a href="#Generate-static-files（发送到服务器）" class="headerlink" title="Generate static files（发送到服务器）"></a>Generate static files（发送到服务器）</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites（部署到远程站点）"><a href="#Deploy-to-remote-sites（部署到远程站点）" class="headerlink" title="Deploy to remote sites（部署到远程站点）"></a>Deploy to remote sites（部署到远程站点）</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo deploy</span><br></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2022/06/26/hero%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
   
 
 
