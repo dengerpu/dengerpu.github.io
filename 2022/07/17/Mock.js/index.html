@@ -1,0 +1,689 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.png">
+  <link rel="icon" href="/img/icon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Deng ErPu">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="Mock.jsmockjs官网：http:&#x2F;&#x2F;mockjs.com&#x2F;  1.安装依赖123456# 使用axios发送ajax请求cnpm install axios --save# 使用mockjs产生随机数据cnpm install mockjs --save-dev# 使用json5解决json文件，无法加注释问题cnpm install json5 --save-dev    123456">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mock">
+<meta property="og:url" content="http://example.com/2022/07/17/Mock.js/index.html">
+<meta property="og:site_name" content="会写Bug的小邓程序员">
+<meta property="og:description" content="Mock.jsmockjs官网：http:&#x2F;&#x2F;mockjs.com&#x2F;  1.安装依赖123456# 使用axios发送ajax请求cnpm install axios --save# 使用mockjs产生随机数据cnpm install mockjs --save-dev# 使用json5解决json文件，无法加注释问题cnpm install json5 --save-dev    123456">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/img/article/mock.png">
+<meta property="article:published_time" content="2022-07-17T14:51:00.000Z">
+<meta property="article:modified_time" content="2022-08-29T15:02:43.970Z">
+<meta property="article:author" content="Deng ErPu">
+<meta property="article:tag" content="Mock">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/img/article/mock.png">
+  
+  
+  
+  <title>Mock - 会写Bug的小邓程序员</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/mac.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>爱写Bug的小邓程序员</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/bg.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Mock"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-07-17 22:51" pubdate>
+          2022年7月17日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          7.6k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          64 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Mock</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="Mock-js"><a href="#Mock-js" class="headerlink" title="Mock.js"></a>Mock.js</h1><p>mockjs官网：<a target="_blank" rel="noopener" href="http://mockjs.com/">http://mockjs.com/</a></p>
+<p><img src="https://trpora-1300527744.cos.ap-chongqing.myqcloud.com/img/20210326160815822.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<h2 id="1-安装依赖"><a href="#1-安装依赖" class="headerlink" title="1.安装依赖"></a>1.安装依赖</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_"># </span><span class="language-bash">使用axios发送ajax请求</span><br>cnpm install axios --save<br><span class="hljs-meta prompt_"># </span><span class="language-bash">使用mockjs产生随机数据</span><br>cnpm install mockjs --save-dev<br><span class="hljs-meta prompt_"># </span><span class="language-bash">使用json5解决json文件，无法加注释问题</span><br>cnpm install json5 --save-dev<br></code></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> <span class="hljs-title class_">Mock</span> = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;mockjs&#x27;</span>)<br><span class="hljs-keyword">let</span> id = <span class="hljs-title class_">Mock</span>.<span class="hljs-title function_">mock</span>(<span class="hljs-string">&#x27;@id&#x27;</span>)  <span class="hljs-comment">// 得到随机的id,字符串</span><br><br><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(id, <span class="hljs-keyword">typeof</span> id)<br><br><span class="hljs-keyword">var</span> obj = <span class="hljs-title class_">Mock</span>.<span class="hljs-title function_">mock</span>(&#123;<br>    <span class="hljs-attr">id</span>: <span class="hljs-string">&quot;@id()&quot;</span>,<span class="hljs-comment">//得到随机的id,对象</span><br>    <span class="hljs-attr">username</span>: <span class="hljs-string">&quot;@cname()&quot;</span>,<span class="hljs-comment">//随机生成中文名字</span><br>    <span class="hljs-attr">date</span>: <span class="hljs-string">&quot;@date()&quot;</span>,<span class="hljs-comment">//随机生成日期</span><br>    <span class="hljs-attr">avatar</span>: <span class="hljs-string">&quot;@image(&#x27;200x200&#x27;,&#x27;red&#x27;,&#x27;#fff&#x27;,&#x27;avatar&#x27;)&quot;</span>,<span class="hljs-comment">//生成图片,参数:size, background, foreground, text</span><br>    <span class="hljs-attr">description</span>: <span class="hljs-string">&quot;@paragraph()&quot;</span>,<span class="hljs-comment">//描述</span><br>    <span class="hljs-attr">ip</span>: <span class="hljs-string">&quot;@ip()&quot;</span>,<span class="hljs-comment">//IP地址</span><br>    <span class="hljs-attr">email</span>: <span class="hljs-string">&quot;@email()&quot;</span><span class="hljs-comment">//email</span><br>&#125;)<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(obj)<br></code></pre></td></tr></table></figure>
+
+<p>vscode安装json5插件（json5 syantax）</p>
+<p><img src="https://trpora-1300527744.cos.ap-chongqing.myqcloud.com/img/image-20220705142350689.png" srcset="/img/loading.gif" lazyload alt="image-20220705142350689"></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;fs&#x27;</span>)<br><span class="hljs-keyword">const</span> path = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;path&#x27;</span>)<br><span class="hljs-keyword">const</span> <span class="hljs-title class_">JSON</span>5 = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;json5&#x27;</span>)<br><br><span class="hljs-comment">// 读取json文件</span><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">getJsonFile</span>(<span class="hljs-params">fileParh</span>) &#123;<br>    <span class="hljs-comment">// 读取指定json文件</span><br>    <span class="hljs-keyword">var</span> json = fs.<span class="hljs-title function_">readFileSync</span>(path.<span class="hljs-title function_">resolve</span>(__dirname, fileParh), <span class="hljs-string">&#x27;utf-8&#x27;</span>)<br>    <span class="hljs-comment">// 解析并返回</span><br>    <span class="hljs-keyword">return</span> <span class="hljs-title class_">JSON</span>5.<span class="hljs-title function_">parse</span>(json)<br>&#125;<br><span class="hljs-comment">// var json = fs.readFileSync(path.join(__dirname, &#x27;./userinfo.json5&#x27;), &#x27;utf-8&#x27;)</span><br><span class="hljs-comment">// var obj = JSON5.parse(json)</span><br><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(path.<span class="hljs-title function_">resolve</span>(__dirname))<br><br><span class="hljs-keyword">var</span> json = <span class="hljs-title function_">getJsonFile</span>(<span class="hljs-string">&#x27;./userinfo.json5&#x27;</span>)<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(json)<br></code></pre></td></tr></table></figure>
+
+<h2 id="Mock和VueCli结合"><a href="#Mock和VueCli结合" class="headerlink" title="Mock和VueCli结合"></a>Mock和VueCli结合</h2><h3 id="0-创建json文件"><a href="#0-创建json文件" class="headerlink" title="0.创建json文件"></a>0.创建json文件</h3><p>用于设置获取的文件类型</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><br>    id<span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;@id()&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-comment">//得到随机的id,对象</span><br>    username<span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;@cname()&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-comment">//随机生成中文名字</span><br>    date<span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;@date()&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-comment">//随机生成日期</span><br>    avatar<span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;@image(&#x27;200x200&#x27;,&#x27;red&#x27;,&#x27;#fff&#x27;,&#x27;avatar&#x27;)&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-comment">//生成图片,参数:size, background, foreground, text</span><br>    description<span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;@paragraph()&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-comment">//描述</span><br>    ip<span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;@ip()&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-comment">//IP地址</span><br>    email<span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;@email()&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-comment">//email</span><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="1-在mock下创建index-js文件"><a href="#1-在mock下创建index-js文件" class="headerlink" title="1.在mock下创建index.js文件"></a>1.在mock下创建index.js文件</h3><p>(和src同级目录)mock-&gt;index.js</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;fs&#x27;</span>);<br><span class="hljs-keyword">const</span> path = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;path&#x27;</span>);<br><span class="hljs-keyword">const</span> <span class="hljs-title class_">Mock</span> = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;mockjs&#x27;</span>);<span class="hljs-comment">//mockjs 导入依赖模块</span><br><span class="hljs-keyword">const</span> <span class="hljs-title class_">JSON</span>5 = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;json5&#x27;</span>);<br><span class="hljs-comment">//读取json文件</span><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">getJsonFile</span>(<span class="hljs-params">filePath</span>) &#123;<br>    <span class="hljs-comment">//读取指定json文件</span><br>    <span class="hljs-keyword">var</span> json = fs.<span class="hljs-title function_">readFileSync</span>(path.<span class="hljs-title function_">resolve</span>(__dirname,filePath), <span class="hljs-string">&#x27;utf-8&#x27;</span>);<br>    <span class="hljs-comment">//解析并返回</span><br>    <span class="hljs-keyword">return</span> <span class="hljs-title class_">JSON</span>5.<span class="hljs-title function_">parse</span>(json);<br>&#125;<br><br><span class="hljs-comment">//返回一个函数</span><br><span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = <span class="hljs-keyword">function</span>(<span class="hljs-params">app</span>)&#123;<br>    <span class="hljs-comment">//监听http请求</span><br>    app.<span class="hljs-title function_">get</span>(<span class="hljs-string">&#x27;/user/userinfo&#x27;</span>, <span class="hljs-keyword">function</span> (<span class="hljs-params">rep, res</span>) &#123;<br>        <span class="hljs-comment">//每次响应请求时读取mock data的json文件</span><br>        <span class="hljs-comment">//getJsonFile方法定义了如何读取json文件并解析成数据对象</span><br>        <span class="hljs-keyword">var</span> json = <span class="hljs-title function_">getJsonFile</span>(<span class="hljs-string">&#x27;./userInfo.json5&#x27;</span>);<br>        <span class="hljs-comment">//将json传入 Mock.mock 方法中，生成的数据返回给浏览器</span><br>        res.<span class="hljs-title function_">json</span>(<span class="hljs-title class_">Mock</span>.<span class="hljs-title function_">mock</span>(json));<br>    &#125;);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="2-配合vue-config-js文件"><a href="#2-配合vue-config-js文件" class="headerlink" title="2.配合vue.config.js文件"></a>2.配合vue.config.js文件</h3><p>vue.config.js</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = &#123;<br>    <span class="hljs-attr">devServer</span>: &#123;<br>        <span class="hljs-attr">before</span>: <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;./mock/index.js&#x27;</span>)<span class="hljs-comment">//引入mock/index.js</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="3-发送ajax请求"><a href="#3-发送ajax请求" class="headerlink" title="3.发送ajax请求"></a>3.发送ajax请求</h3><p>在.vue组件中发送ajax请求</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">import</span> axios <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;axios&#x27;</span><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;<br>  <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;HelloWorld&#x27;</span>,<br>  <span class="hljs-title function_">mounted</span>(<span class="hljs-params"></span>) &#123;<br>    axios.<span class="hljs-title function_">get</span>(<span class="hljs-string">&#x27;/user/userinfo&#x27;</span>)<br>    .<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span> &#123;<br>      <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(res)<br>    &#125;)<br>    .<span class="hljs-title function_">catch</span>(<span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> &#123;<br>      <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(err)<br>    &#125;)<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="4-移除mock"><a href="#4-移除mock" class="headerlink" title="4.移除mock"></a>4.移除mock</h3><p>当后端接口开发出来，需要移除mock</p>
+<p>项目根目录创建.env.development（记住有点）（<strong>不使用mock的话需要置为false</strong>）</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">MOCK=true<br></code></pre></td></tr></table></figure>
+
+<p>在mock下的index文件中添加一下代码</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = <span class="hljs-keyword">function</span>(<span class="hljs-params">app</span>)&#123;<br>    <span class="hljs-keyword">if</span>(process.<span class="hljs-property">env</span>.<span class="hljs-property">MOCK</span> == <span class="hljs-string">&#x27;true&#x27;</span>)&#123;  <span class="hljs-comment">// 添加的代码</span><br>        <span class="hljs-comment">//监听http请求</span><br>        app.<span class="hljs-title function_">get</span>(<span class="hljs-string">&#x27;/user/userinfo&#x27;</span>, <span class="hljs-keyword">function</span> (<span class="hljs-params">rep, res</span>) &#123;<br>            <span class="hljs-comment">//每次响应请求时读取mock data的json文件</span><br>            <span class="hljs-comment">//getJsonFile方法定义了如何读取json文件并解析成数据对象</span><br>            <span class="hljs-keyword">var</span> json = <span class="hljs-title function_">getJsonFile</span>(<span class="hljs-string">&#x27;./userInfo.json5&#x27;</span>);<br>            <span class="hljs-comment">//将json传入 Mock.mock 方法中，生成的数据返回给浏览器</span><br>            res.<span class="hljs-title function_">json</span>(<span class="hljs-title class_">Mock</span>.<span class="hljs-title function_">mock</span>(json));<br>        &#125;);<br>    &#125;<br>&#125; <br></code></pre></td></tr></table></figure>
+
+<p><img src="https://trpora-1300527744.cos.ap-chongqing.myqcloud.com/img/20201018173351321.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<h2 id="在jquery中使用mock-js"><a href="#在jquery中使用mock-js" class="headerlink" title="在jquery中使用mock.js"></a>在jquery中使用mock.js</h2><h3 id="1-新建index-html，引入jquery-js和mock-js"><a href="#1-新建index-html，引入jquery-js和mock-js" class="headerlink" title="1.新建index.html，引入jquery.js和mock.js"></a>1.新建index.html，引入jquery.js和mock.js</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span><br>	<span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span><br>		<span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">&quot;utf-8&quot;</span>&gt;</span><br>		<span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span><br>		<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://cdn.bootcss.com/jquery/2.2.4/jquery.min.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br>		<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://cdn.bootcss.com/Mock.js/1.0.0/mock-min.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br>	<span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span><br><br>	<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span><br>		<br>		<br>	<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="2-mock-gt-index-js"><a href="#2-mock-gt-index-js" class="headerlink" title="2.mock-&gt;index.js"></a>2.mock-&gt;index.js</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-title class_">Mock</span>.<span class="hljs-title function_">mock</span>(<span class="hljs-string">&#x27;/user/userInfo&#x27;</span>, <span class="hljs-string">&#x27;get&#x27;</span>, &#123;<br>	<span class="hljs-attr">id</span>: <span class="hljs-string">&quot;@id()&quot;</span>, <span class="hljs-comment">//得到随机的id</span><br>	<span class="hljs-attr">username</span>: <span class="hljs-string">&quot;@cname()&quot;</span>, <span class="hljs-comment">//随机生成中文名字</span><br>	<span class="hljs-attr">date</span>: <span class="hljs-string">&quot;@date()&quot;</span>, <span class="hljs-comment">//随机生成日期</span><br>	<span class="hljs-attr">avator</span>: <span class="hljs-string">&quot;@image(&#x27;200x200&#x27;,&#x27;#50B347&#x27;,&#x27;#fff&#x27;,&#x27;avatar&#x27;)&quot;</span>, <span class="hljs-comment">//生成图片，参数：size,background,foreground,text</span><br>	<span class="hljs-attr">description</span>: <span class="hljs-string">&quot;@paragraph()&quot;</span>, <span class="hljs-comment">//描述</span><br>	<span class="hljs-attr">ip</span>: <span class="hljs-string">&quot;@ip()&quot;</span>, <span class="hljs-comment">//IP地址</span><br>	<span class="hljs-attr">email</span>: <span class="hljs-string">&quot;@email()&quot;</span> <span class="hljs-comment">//email</span><br>&#125;)<br></code></pre></td></tr></table></figure>
+
+<h3 id="3-使用jquery发送ajax请求"><a href="#3-使用jquery发送ajax请求" class="headerlink" title="3.使用jquery发送ajax请求"></a>3.使用jquery发送ajax请求</h3><p>index.html</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;./mock/index.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br>	<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript"></span><br><span class="language-javascript">		$.<span class="hljs-title function_">ajax</span>(&#123;</span><br><span class="language-javascript">			<span class="hljs-attr">url</span>: <span class="hljs-string">&#x27;/user/userInfo&#x27;</span>,</span><br><span class="language-javascript">			<span class="hljs-attr">dataType</span>: <span class="hljs-string">&#x27;json&#x27;</span>,</span><br><span class="language-javascript">			<span class="hljs-attr">success</span>: <span class="hljs-function">(<span class="hljs-params">data</span>) =&gt;</span> &#123;</span><br><span class="language-javascript">				<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(data)</span><br><span class="language-javascript">			&#125;</span><br><span class="language-javascript">		&#125;)</span><br><span class="language-javascript">	</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="4-移除mock-1"><a href="#4-移除mock-1" class="headerlink" title="4.移除mock"></a>4.移除mock</h3><p>通过添加全局变量ENV来判断</p>
+<p>修改index.html，增加全局变量ENV</p>
+<p><img src="https://trpora-1300527744.cos.ap-chongqing.myqcloud.com/img/image-20220705201513500.png" srcset="/img/loading.gif" lazyload alt="image-20220705201513500"></p>
+<p>更改index.js</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">if</span> (<span class="hljs-variable constant_">MOCK</span> == <span class="hljs-string">&#x27;true&#x27;</span>) &#123;<br>    <span class="hljs-title class_">Mock</span>.<span class="hljs-title function_">mock</span>(<span class="hljs-string">&#x27;/user/userInfo&#x27;</span>, <span class="hljs-string">&#x27;get&#x27;</span>, &#123;<br>        <span class="hljs-attr">id</span>: <span class="hljs-string">&quot;@id()&quot;</span>, <span class="hljs-comment">//得到随机的id</span><br>        <span class="hljs-attr">username</span>: <span class="hljs-string">&quot;@cname()&quot;</span>, <span class="hljs-comment">//随机生成中文名字</span><br>        <span class="hljs-attr">date</span>: <span class="hljs-string">&quot;@date()&quot;</span>, <span class="hljs-comment">//随机生成日期</span><br>        <span class="hljs-attr">avator</span>: <span class="hljs-string">&quot;@image(&#x27;200x200&#x27;,&#x27;#50B347&#x27;,&#x27;#fff&#x27;,&#x27;avatar&#x27;)&quot;</span>, <span class="hljs-comment">//生成图片，参数：size,background,foreground,text</span><br>        <span class="hljs-attr">description</span>: <span class="hljs-string">&quot;@paragraph()&quot;</span>, <span class="hljs-comment">//描述</span><br>        <span class="hljs-attr">ip</span>: <span class="hljs-string">&quot;@ip()&quot;</span>, <span class="hljs-comment">//IP地址</span><br>        <span class="hljs-attr">email</span>: <span class="hljs-string">&quot;@email()&quot;</span> <span class="hljs-comment">//email</span><br>    &#125;)<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<p>当MOCK &#x3D; ‘false’时就不再使用mock</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript">&lt;script&gt;<span class="hljs-variable constant_">MOCK</span> = <span class="hljs-string">&#x27;false&#x27;</span>&lt;/script&gt;<br></code></pre></td></tr></table></figure>
+
+<h2 id="补充："><a href="#补充：" class="headerlink" title="补充："></a>补充：</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// 引入 Mock</span><br><span class="hljs-keyword">import</span> <span class="hljs-title class_">Mock</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;mockjs&#x27;</span><br><br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;<br>    <span class="hljs-comment">// 支持值为 Object 和 Array</span><br>    <span class="hljs-string">&#x27;GET /api/users&#x27;</span>: &#123; <span class="hljs-attr">users</span>: [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>] &#125;,<br>  <br>    <span class="hljs-comment">// GET POST 可省略</span><br>    <span class="hljs-string">&#x27;/api/users/1&#x27;</span>: &#123; <span class="hljs-attr">id</span>: <span class="hljs-number">1</span> &#125;,<br>  <br>    <span class="hljs-comment">// 支持自定义函数，API 参考 express@4</span><br>    <span class="hljs-string">&#x27;POST /api/users/create&#x27;</span>: <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123; <br>        res.<span class="hljs-title function_">end</span>(<span class="hljs-string">&#x27;ok&#x27;</span>); <br>    &#125;,<br><br>    <span class="hljs-string">&quot;GET /login/users&quot;</span>: <span class="hljs-title class_">Mock</span>.<span class="hljs-title function_">mock</span>(&#123;<br>    	<span class="hljs-comment">//生成list数组，数组中有50条数据，</span><br>        <span class="hljs-string">&quot;list|50&quot;</span>:[<br>        &#123;<br>         <span class="hljs-attr">name</span>:<span class="hljs-string">&#x27;@city&#x27;</span>,  <span class="hljs-comment">//随机城市</span><br>         <span class="hljs-string">&quot;value|1-100&quot;</span>: <span class="hljs-number">50</span> <span class="hljs-comment">//1-100位之间，随机生成50个</span><br>         &#125;<br>        ]<br>    &#125;)<br>  &#125;;<br></code></pre></td></tr></table></figure>
+
+<p>登陆接口的例子：<a target="_blank" rel="noopener" href="https://blog.csdn.net/m0_37825704/article/details/120527140">https://blog.csdn.net/m0_37825704/article/details/120527140</a></p>
+<h1 id="使用："><a href="#使用：" class="headerlink" title="使用："></a>使用：</h1><p><img src="https://trpora-1300527744.cos.ap-chongqing.myqcloud.com/img/image-20220709110101343.png" srcset="/img/loading.gif" lazyload alt="image-20220709110101343"></p>
+<p>vue.config.js</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = &#123;<br>    <span class="hljs-attr">devServer</span>: &#123;<br>        <span class="hljs-comment">// devServe在发送请求时，会走到before指定的函数中进行处理，如果before中没有对应的接口，才会请求外网等</span><br>        <span class="hljs-attr">before</span>: <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;./mock/index.js&#x27;</span>)<span class="hljs-comment">//引入mock/index.js</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>mock-&gt;index.js</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> <span class="hljs-title class_">Mock</span> = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;mockjs&#x27;</span>);<br><span class="hljs-keyword">var</span> data = <span class="hljs-title class_">Mock</span>.<span class="hljs-title function_">mock</span>(&#123;<br>    <span class="hljs-attr">id</span>: <span class="hljs-string">&quot;@id()&quot;</span>,<span class="hljs-comment">//得到随机的id,对象</span><br>    <span class="hljs-attr">username</span>: <span class="hljs-string">&quot;@cname()&quot;</span>,<span class="hljs-comment">//随机生成中文名字</span><br>    <span class="hljs-attr">date</span>: <span class="hljs-string">&quot;@date()&quot;</span>,<span class="hljs-comment">//随机生成日期</span><br>    <span class="hljs-attr">avatar</span>: <span class="hljs-string">&quot;@image(&#x27;200x200&#x27;,&#x27;red&#x27;,&#x27;#fff&#x27;,&#x27;avatar&#x27;)&quot;</span>,<span class="hljs-comment">//生成图片,参数:size, background, foreground, text</span><br>    <span class="hljs-attr">description</span>: <span class="hljs-string">&quot;@paragraph()&quot;</span>,<span class="hljs-comment">//描述</span><br>    <span class="hljs-attr">ip</span>: <span class="hljs-string">&quot;@ip()&quot;</span>,<span class="hljs-comment">//IP地址</span><br>    <span class="hljs-attr">email</span>: <span class="hljs-string">&quot;@email()&quot;</span>, <span class="hljs-comment">//email</span><br>&#125;)<br><br><span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params">app</span>) &#123;<br>  <span class="hljs-comment">// 参数1：参数接口地址，参数2：服务器处理函数</span><br>  app.<span class="hljs-title function_">use</span>(<span class="hljs-string">&#x27;api/userinfo&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;<br>    <br>    <span class="hljs-comment">// 将模拟的数据转换成json格式返回给浏览器</span><br>    res.<span class="hljs-title function_">json</span>(data)<br>  &#125;)<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://trpora-1300527744.cos.ap-chongqing.myqcloud.com/img/image-20220709111712636.png" srcset="/img/loading.gif" lazyload alt="image-20220709111712636"></p>
+<p><img src="https://trpora-1300527744.cos.ap-chongqing.myqcloud.com/img/image-20220709111746543.png" srcset="/img/loading.gif" lazyload alt="image-20220709111746543"></p>
+<p><img src="https://trpora-1300527744.cos.ap-chongqing.myqcloud.com/img/image-20220709111951298.png" srcset="/img/loading.gif" lazyload alt="image-20220709111951298"></p>
+<h1 id="Mock-mock"><a href="#Mock-mock" class="headerlink" title="Mock.mock()"></a>Mock.mock()</h1><h2 id="Mock-mock-rurl-rtype-template-function-options"><a href="#Mock-mock-rurl-rtype-template-function-options" class="headerlink" title="Mock.mock( rurl?, rtype?, template|function( options ) )"></a>Mock.mock( rurl?, rtype?, template|function( options ) )</h2><p>根据数据模板生成模拟数据。</p>
+<h3 id="Mock-mock-template"><a href="#Mock-mock-template" class="headerlink" title="Mock.mock( template )"></a>Mock.mock( template )</h3><p>根据数据模板生成模拟数据。</p>
+<h3 id="Mock-mock-rurl-template"><a href="#Mock-mock-rurl-template" class="headerlink" title="Mock.mock( rurl, template )"></a>Mock.mock( rurl, template )</h3><p>记录数据模板。当拦截到匹配 <code>rurl</code> 的 Ajax 请求时，将根据数据模板 <code>template</code> 生成模拟数据，并作为响应数据返回。</p>
+<h3 id="Mock-mock-rurl-function-options"><a href="#Mock-mock-rurl-function-options" class="headerlink" title="Mock.mock( rurl, function( options ) )"></a>Mock.mock( rurl, function( options ) )</h3><p>记录用于生成响应数据的函数。当拦截到匹配 <code>rurl</code> 的 Ajax 请求时，函数 <code>function(options)</code> 将被执行，并把执行结果作为响应数据返回。</p>
+<h3 id="Mock-mock-rurl-rtype-template"><a href="#Mock-mock-rurl-rtype-template" class="headerlink" title="Mock.mock( rurl, rtype, template )"></a>Mock.mock( rurl, rtype, template )</h3><p>记录数据模板。当拦截到匹配 <code>rurl</code> 和 <code>rtype</code> 的 Ajax 请求时，将根据数据模板 <code>template</code> 生成模拟数据，并作为响应数据返回。</p>
+<h3 id="Mock-mock-rurl-rtype-function-options"><a href="#Mock-mock-rurl-rtype-function-options" class="headerlink" title="Mock.mock( rurl, rtype, function( options ) )"></a>Mock.mock( rurl, rtype, function( options ) )</h3><p>记录用于生成响应数据的函数。当拦截到匹配 <code>rurl</code> 和 <code>rtype</code> 的 Ajax 请求时，函数 <code>function(options)</code> 将被执行，并把执行结果作为响应数据返回。</p>
+<h3 id="rurl"><a href="#rurl" class="headerlink" title="rurl"></a>rurl</h3><p>可选。</p>
+<p>表示需要拦截的 URL，可以是 URL 字符串或 URL 正则。例如 <code>/\/domain\/list\.json/</code>、<code>&#39;/domian/list.json&#39;</code>。</p>
+<h3 id="rtype"><a href="#rtype" class="headerlink" title="rtype"></a>rtype</h3><p>可选。</p>
+<p>表示需要拦截的 Ajax 请求类型。例如 <code>GET</code>、<code>POST</code>、<code>PUT</code>、<code>DELETE</code> 等。</p>
+<h3 id="template"><a href="#template" class="headerlink" title="template"></a>template</h3><p>可选。</p>
+<p>表示数据模板，可以是对象或字符串。例如 <code>&#123; &#39;data|1-10&#39;:[&#123;&#125;] &#125;</code>、<code>&#39;@EMAIL&#39;</code>。</p>
+<h3 id="function-options"><a href="#function-options" class="headerlink" title="function(options)"></a>function(options)</h3><p>可选。</p>
+<p>表示用于生成响应数据的函数。</p>
+<h4 id="options"><a href="#options" class="headerlink" title="options"></a>options</h4><p>指向本次请求的 Ajax 选项集，含有 <code>url</code>、<code>type</code> 和 <code>body</code> 三个属性，参见 <a target="_blank" rel="noopener" href="https://xhr.spec.whatwg.org/">XMLHttpRequest 规范</a>。</p>
+<h2 id="Mock-setup-settings"><a href="#Mock-setup-settings" class="headerlink" title="Mock.setup( settings )"></a>Mock.setup( settings )</h2><ul>
+<li>Mock.setup( settings )</li>
+</ul>
+<p>配置拦截 Ajax 请求时的行为。支持的配置项有：<code>timeout</code>。</p>
+<h3 id="settings"><a href="#settings" class="headerlink" title="settings"></a>settings</h3><p>必选。</p>
+<p>配置项集合。</p>
+<h4 id="timeout"><a href="#timeout" class="headerlink" title="timeout"></a>timeout</h4><p>可选。</p>
+<p>指定被拦截的 Ajax 请求的响应时间，单位是毫秒。值可以是正整数，例如 <code>400</code>，表示 400 毫秒 后才会返回响应内容；也可以是横杠 <code>&#39;-&#39;</code> 风格的字符串，例如 <code>&#39;200-600&#39;</code>，表示响应时间介于 200 和 600 毫秒之间。默认值是<code>&#39;10-100&#39;</code>。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash">Mock.setup(&#123;<br>    <span class="hljs-built_in">timeout</span>: 400<br>&#125;)<br>Mock.setup(&#123;<br>    <span class="hljs-built_in">timeout</span>: <span class="hljs-string">&#x27;200-600&#x27;</span><br>&#125;)<br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>目前，接口 <code>Mock.setup( settings )</code> 仅用于配置 Ajax 请求，将来可能用于配置 Mock 的其他行为。</p>
+</blockquote>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Mock/">#Mock</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Mock</div>
+      <div>http://example.com/2022/07/17/Mock.js/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Deng ErPu</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年7月17日</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>许可协议</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/07/19/Mybatis/" title="Mybatis">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Mybatis</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/07/15/MySQL/" title="MySQL">
+                        <span class="hidden-mobile">MySQL</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

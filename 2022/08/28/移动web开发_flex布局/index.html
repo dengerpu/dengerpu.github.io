@@ -1,0 +1,740 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.png">
+  <link rel="icon" href="/img/icon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Deng ErPu">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="移动web开发——flex布局1.0传统布局和flex布局对比1.1传统布局 兼容性好 布局繁琐 局限性，不能再移动端很好的布局  1.2 flex布局 操作方便，布局极其简单，移动端使用比较广泛 pc端浏览器支持情况比较差 IE11或更低版本不支持flex或仅支持部分  1.3 建议 如果是pc端页面布局，还是采用传统方式 如果是移动端或者是不考虑兼容的pc则采用flex  2.0 flex布局">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Flex布局">
+<meta property="og:url" content="http://example.com/2022/08/28/%E7%A7%BB%E5%8A%A8web%E5%BC%80%E5%8F%91_flex%E5%B8%83%E5%B1%80/index.html">
+<meta property="og:site_name" content="会写Bug的小邓程序员">
+<meta property="og:description" content="移动web开发——flex布局1.0传统布局和flex布局对比1.1传统布局 兼容性好 布局繁琐 局限性，不能再移动端很好的布局  1.2 flex布局 操作方便，布局极其简单，移动端使用比较广泛 pc端浏览器支持情况比较差 IE11或更低版本不支持flex或仅支持部分  1.3 建议 如果是pc端页面布局，还是采用传统方式 如果是移动端或者是不考虑兼容的pc则采用flex  2.0 flex布局">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/img/article/flex.png">
+<meta property="article:published_time" content="2022-08-28T02:18:00.000Z">
+<meta property="article:modified_time" content="2022-08-28T02:17:13.116Z">
+<meta property="article:author" content="Deng ErPu">
+<meta property="article:tag" content="前端">
+<meta property="article:tag" content="css">
+<meta property="article:tag" content="Flex">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/img/article/flex.png">
+  
+  
+  
+  <title>Flex布局 - 会写Bug的小邓程序员</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/mac.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>爱写Bug的小邓程序员</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/bg.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Flex布局"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-08-28 10:18" pubdate>
+          2022年8月28日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3.1k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          26 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Flex布局</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="移动web开发——flex布局"><a href="#移动web开发——flex布局" class="headerlink" title="移动web开发——flex布局"></a>移动web开发——flex布局</h1><h2 id="1-0传统布局和flex布局对比"><a href="#1-0传统布局和flex布局对比" class="headerlink" title="1.0传统布局和flex布局对比"></a>1.0传统布局和flex布局对比</h2><h3 id="1-1传统布局"><a href="#1-1传统布局" class="headerlink" title="1.1传统布局"></a>1.1传统布局</h3><ul>
+<li>兼容性好</li>
+<li>布局繁琐</li>
+<li>局限性，不能再移动端很好的布局</li>
+</ul>
+<h3 id="1-2-flex布局"><a href="#1-2-flex布局" class="headerlink" title="1.2 flex布局"></a>1.2 flex布局</h3><ul>
+<li>操作方便，布局极其简单，移动端使用比较广泛</li>
+<li>pc端浏览器支持情况比较差</li>
+<li>IE11或更低版本不支持flex或仅支持部分</li>
+</ul>
+<h3 id="1-3-建议"><a href="#1-3-建议" class="headerlink" title="1.3 建议"></a>1.3 建议</h3><ul>
+<li>如果是pc端页面布局，还是采用传统方式</li>
+<li>如果是移动端或者是不考虑兼容的pc则采用flex</li>
+</ul>
+<h2 id="2-0-flex布局原理"><a href="#2-0-flex布局原理" class="headerlink" title="2.0 flex布局原理"></a>2.0 flex布局原理</h2><ul>
+<li>flex 是 flexible Box 的缩写，意为”弹性布局”，用来为盒状模型提供最大的灵活性，任何一个容器都可以指定为 flex 布局。</li>
+<li>当我们为父盒子设为 flex 布局以后，子元素的 float、clear 和 vertical-align 属性将失效。</li>
+<li>flex布局又叫伸缩布局 、弹性布局 、伸缩盒布局 、弹性盒布局 </li>
+<li>采用 Flex 布局的元素，称为 Flex 容器（flex</li>
+</ul>
+<p>container），简称”容器”。它的所有子元素自动成为容器成员，称为 Flex 项目（flex<br>item），简称”项目”。</p>
+<p><strong>总结</strong>：就是通过给父盒子添加flex属性，来控制子盒子的位置和排列方式</p>
+<h2 id="3-0-父项常见属性"><a href="#3-0-父项常见属性" class="headerlink" title="3.0 父项常见属性"></a>3.0 父项常见属性</h2><ul>
+<li>flex-direction：设置主轴的方向</li>
+<li>justify-content：设置主轴上的子元素排列方式</li>
+<li>flex-wrap：设置子元素是否换行  </li>
+<li>align-content：设置侧轴上的子元素的排列方式（多行）</li>
+<li>align-items：设置侧轴上的子元素排列方式（单行）</li>
+<li>flex-flow：复合属性，相当于同时设置了 flex-direction 和 flex-wrap</li>
+</ul>
+<h3 id="3-1-flex-direction设置主轴的方向"><a href="#3-1-flex-direction设置主轴的方向" class="headerlink" title="3.1 flex-direction设置主轴的方向"></a>3.1 flex-direction设置主轴的方向</h3><ul>
+<li>在 flex 布局中，是分为主轴和侧轴两个方向，同样的叫法有 ： 行和列、x 轴和y 轴</li>
+<li>默认主轴方向就是 x 轴方向，水平向右</li>
+<li>默认侧轴方向就是 y 轴方向，水平向下</li>
+</ul>
+<img src="https://trpora-1300527744.cos.ap-chongqing.myqcloud.com/img/1.jpg" srcset="/img/loading.gif" lazyload>
+
+<ul>
+<li><p>注意： 主轴和侧轴是会变化的，就看 flex-direction 设置谁为主轴，剩下的就是侧轴。而我们的子元素是跟着主轴来排列的</p>
+<img src="https://trpora-1300527744.cos.ap-chongqing.myqcloud.com/img/2.jpg" srcset="/img/loading.gif" lazyload></li>
+</ul>
+<blockquote>
+<p>flex-direction属性决定主轴的方向（即项目的排列方向）。</p>
+</blockquote>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.box</span> &#123;<br>  <span class="hljs-attribute">flex-direction</span>: row | row-reverse | column | column-reverse;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://trpora-1300527744.cos.ap-chongqing.myqcloud.com/img/image-20220828095228319.png" srcset="/img/loading.gif" lazyload alt="image-20220828095228319"></p>
+<h3 id="3-2-justify-content-设置主轴上的子元素排列方式"><a href="#3-2-justify-content-设置主轴上的子元素排列方式" class="headerlink" title="3.2 justify-content 设置主轴上的子元素排列方式"></a>3.2 justify-content 设置主轴上的子元素排列方式</h3><img src="https://trpora-1300527744.cos.ap-chongqing.myqcloud.com/img/3.jpg" srcset="/img/loading.gif" lazyload>
+
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.box</span> &#123;<br>  <span class="hljs-attribute">justify-content</span>: flex-start | flex-end | center | space-between | space-around;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://trpora-1300527744.cos.ap-chongqing.myqcloud.com/img/image-20220828095722708.png" srcset="/img/loading.gif" lazyload alt="image-20220828095722708"></p>
+<p><img src="https://trpora-1300527744.cos.ap-chongqing.myqcloud.com/img/image-20220828095743149.png" srcset="/img/loading.gif" lazyload alt="image-20220828095743149"></p>
+<h3 id="3-3-flex-wrap设置是否换行"><a href="#3-3-flex-wrap设置是否换行" class="headerlink" title="3.3 flex-wrap设置是否换行"></a>3.3 flex-wrap设置是否换行</h3><ul>
+<li>默认情况下，项目都排在一条线（又称”轴线”）上。flex-wrap属性定义，flex布局中默认是不换行的。</li>
+<li>nowrap 不换行</li>
+<li>wrap 换行</li>
+</ul>
+<p><img src="https://trpora-1300527744.cos.ap-chongqing.myqcloud.com/img/image-20220828095331544.png" srcset="/img/loading.gif" lazyload alt="image-20220828095331544"></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.box</span>&#123;<br>  <span class="hljs-attribute">flex-wrap</span>: nowrap | wrap | wrap-reverse;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>（1）nowrap（默认）：不换行。</p>
+<p><img src="https://trpora-1300527744.cos.ap-chongqing.myqcloud.com/img/image-20220828095424957.png" srcset="/img/loading.gif" lazyload alt="image-20220828095424957"></p>
+<p>（2）wrap：换行，第一行在上方。</p>
+<p><img src="https://trpora-1300527744.cos.ap-chongqing.myqcloud.com/img/image-20220828095501286.png" srcset="/img/loading.gif" lazyload alt="image-20220828095501286"></p>
+<p>（3）wrap-reverse：换行，第一行在下方。</p>
+<p><img src="https://trpora-1300527744.cos.ap-chongqing.myqcloud.com/img/image-20220828095537532.png" srcset="/img/loading.gif" lazyload alt="image-20220828095537532"></p>
+<h3 id="3-4-align-items-设置侧轴上的子元素排列方式（单行-）"><a href="#3-4-align-items-设置侧轴上的子元素排列方式（单行-）" class="headerlink" title="3.4 align-items 设置侧轴上的子元素排列方式（单行 ）"></a>3.4 align-items 设置侧轴上的子元素排列方式（单行 ）</h3><ul>
+<li>该属性是控制子项在侧轴（默认是y轴）上的排列方式  在子项为单项（单行）的时候使用</li>
+<li>flex-start 从头部开始</li>
+<li>flex-end 从尾部开始</li>
+<li>center 居中显示</li>
+<li>stretch 拉伸</li>
+<li>baseline 项目的第一行文字的基线对齐。</li>
+</ul>
+<p><img src="https://trpora-1300527744.cos.ap-chongqing.myqcloud.com/img/image-20220828100156513.png" srcset="/img/loading.gif" lazyload alt="image-20220828100156513"></p>
+<p><img src="https://trpora-1300527744.cos.ap-chongqing.myqcloud.com/img/image-20220828100215032.png" srcset="/img/loading.gif" lazyload alt="image-20220828100215032"></p>
+<h3 id="3-5-align-content-设置侧轴上的子元素的排列方式（多行）"><a href="#3-5-align-content-设置侧轴上的子元素的排列方式（多行）" class="headerlink" title="3.5 align-content  设置侧轴上的子元素的排列方式（多行）"></a>3.5 align-content  设置侧轴上的子元素的排列方式（多行）</h3><p>设置子项在侧轴上的排列方式 并且只能用于子项出现 换行 的情况（多行），在单行下是没有效果的。</p>
+<img src="https://trpora-1300527744.cos.ap-chongqing.myqcloud.com/img/4.jpg" srcset="/img/loading.gif" lazyload>
+
+<blockquote>
+<p>align-content属性定义了多根轴线的对齐方式。如果项目只有一根轴线，该属性不起作用。</p>
+</blockquote>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.box</span> &#123;<br>  <span class="hljs-attribute">align-content</span>: flex-start | flex-end | center | space-between | space-around | stretch;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://trpora-1300527744.cos.ap-chongqing.myqcloud.com/img/image-20220828100455100.png" srcset="/img/loading.gif" lazyload alt="image-20220828100455100"></p>
+<p><img src="https://trpora-1300527744.cos.ap-chongqing.myqcloud.com/img/image-20220828100510564.png" srcset="/img/loading.gif" lazyload alt="image-20220828100510564"></p>
+<h3 id="3-6-align-content-和align-items区别"><a href="#3-6-align-content-和align-items区别" class="headerlink" title="3.6 align-content 和align-items区别"></a>3.6 align-content 和align-items区别</h3><ul>
+<li>align-items  适用于单行情况下， 只有上对齐、下对齐、居中和 拉伸</li>
+<li>align-content适应于换行（多行）的情况下（单行情况下无效）， 可以设置 上对齐、下对齐、居中、拉伸以及平均分配剩余空间等属性值。 </li>
+<li>总结就是单行找align-items  多行找 align-content</li>
+</ul>
+<h3 id="3-7-flex-flow-属性是-flex-direction-和-flex-wrap-属性的复合属性"><a href="#3-7-flex-flow-属性是-flex-direction-和-flex-wrap-属性的复合属性" class="headerlink" title="3.7 flex-flow 属性是 flex-direction 和 flex-wrap 属性的复合属性"></a>3.7 flex-flow 属性是 flex-direction 和 flex-wrap 属性的复合属性</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-attribute">flex-flow</span>:row wrap;<br></code></pre></td></tr></table></figure>
+
+<h2 id="4-0-flex布局子项常见属性"><a href="#4-0-flex布局子项常见属性" class="headerlink" title="4.0 flex布局子项常见属性"></a>4.0 flex布局子项常见属性</h2><ul>
+<li>flex子项目占的份数</li>
+<li>align-self控制子项自己在侧轴的排列方式</li>
+<li>order属性定义子项的排列顺序（前后顺序）</li>
+</ul>
+<h3 id="4-1-flex-属性"><a href="#4-1-flex-属性" class="headerlink" title="4.1  flex 属性"></a>4.1  flex 属性</h3><p>flex 属性定义子项目分配剩余空间，用flex来表示占多少份数。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.item</span> &#123;<br>    <span class="hljs-attribute">flex</span>: &lt;number&gt;; <span class="hljs-comment">/* 默认值 0 */</span><br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<h3 id="4-2-align-self控制子项自己在侧轴上的排列方式"><a href="#4-2-align-self控制子项自己在侧轴上的排列方式" class="headerlink" title="4.2 align-self控制子项自己在侧轴上的排列方式"></a>4.2 align-self控制子项自己在侧轴上的排列方式</h3><p>align-self 属性允许单个项目有与其他项目不一样的对齐方式，可覆盖 align-items 属性。</p>
+<p>默认值为 auto，表示继承父元素的 align-items 属性，如果没有父元素，则等同于 stretch。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">span</span><span class="hljs-selector-pseudo">:nth-child</span>(<span class="hljs-number">2</span>) &#123;<br>      <span class="hljs-comment">/* 设置自己在侧轴上的排列方式 */</span><br>      <span class="hljs-attribute">align-self</span>: flex-end;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.item</span> &#123;<br>  <span class="hljs-attribute">align-self</span>: auto | flex-start | flex-end | center | baseline | stretch;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>align-self属性允许单个项目有与其他项目不一样的对齐方式，可覆盖align-items属性。默认值为auto，表示继承父元素的align-items属性，如果没有父元素，则等同于stretch。</p>
+</blockquote>
+<p><img src="https://trpora-1300527744.cos.ap-chongqing.myqcloud.com/img/image-20220828100931942.png" srcset="/img/loading.gif" lazyload alt="image-20220828100931942"></p>
+<h3 id="4-3-order-属性定义项目的排列顺序"><a href="#4-3-order-属性定义项目的排列顺序" class="headerlink" title="4.3 order 属性定义项目的排列顺序"></a>4.3 order 属性定义项目的排列顺序</h3><p>数值越小，排列越靠前，默认为0。</p>
+<p>注意：和 z-index 不一样。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.item</span> &#123;<br>    <span class="hljs-attribute">order</span>: &lt;number&gt;;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://trpora-1300527744.cos.ap-chongqing.myqcloud.com/img/image-20220828100714077.png" srcset="/img/loading.gif" lazyload alt="image-20220828100714077"></p>
+<h3 id="4-4flex-shrink属性"><a href="#4-4flex-shrink属性" class="headerlink" title="4.4flex-shrink属性"></a>4.4flex-shrink属性</h3><p>flex-shrink属性定义了项目的缩小比例，默认为1，即如果空间不足，该项目将缩小。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.item</span> &#123;<br>  <span class="hljs-attribute">flex-shrink</span>: &lt;number&gt;; <span class="hljs-comment">/* default 1 */</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://trpora-1300527744.cos.ap-chongqing.myqcloud.com/img/image-20220828101140396.png" srcset="/img/loading.gif" lazyload alt="image-20220828101140396"></p>
+<p>如果所有项目的flex-shrink属性都为1，当空间不足时，都将等比例缩小。如果一个项目的flex-shrink属性为0，其他项目都为1，则空间不足时，前者不缩小。</p>
+<p>负值对该属性无效。</p>
+<h3 id="4-5-flex-grow属性"><a href="#4-5-flex-grow属性" class="headerlink" title="4.5 flex-grow属性"></a>4.5 flex-grow属性</h3><p>flex-grow属性定义项目的放大比例，默认为0，即如果存在剩余空间，也不放大。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.item</span> &#123;<br>  <span class="hljs-attribute">flex-grow</span>: &lt;number&gt;; <span class="hljs-comment">/* default 0 */</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://trpora-1300527744.cos.ap-chongqing.myqcloud.com/img/image-20220828101308982.png" srcset="/img/loading.gif" lazyload alt="image-20220828101308982"></p>
+<p>如果所有项目的flex-grow属性都为1，则它们将等分剩余空间（如果有的话）。如果一个项目的flex-grow属性为2，其他项目都为1，则前者占据的剩余空间将比其他项多一倍。</p>
+<h3 id="4-6-flex-basis属性"><a href="#4-6-flex-basis属性" class="headerlink" title="4.6 flex-basis属性"></a>4.6 flex-basis属性</h3><p>flex-basis属性定义了在分配多余空间之前，项目占据的主轴空间（main size）。浏览器根据这个属性，计算主轴是否有多余空间。它的默认值为auto，即项目的本来大小。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.item</span> &#123;<br>  <span class="hljs-attribute">flex-basis</span>: &lt;length&gt; | auto; <span class="hljs-comment">/* default auto */</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>它可以设为跟width或height属性一样的值（比如350px），则项目将占据固定空间。</p>
+<h2 id="参考："><a href="#参考：" class="headerlink" title="参考："></a>参考：</h2><p><a target="_blank" rel="noopener" href="https://www.runoob.com/w3cnote/flex-grammar.html">Flex 布局语法教程|菜鸟教程</a></p>
+<p>黑马程序员Flex伸缩布局</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E5%89%8D%E7%AB%AF/">#前端</a>
+      
+        <a href="/tags/css/">#css</a>
+      
+        <a href="/tags/Flex/">#Flex</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Flex布局</div>
+      <div>http://example.com/2022/08/28/移动web开发_flex布局/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Deng ErPu</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年8月28日</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>许可协议</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/08/28/CSS/" title="CSS">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">CSS</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/08/27/vue3/" title="Vue3">
+                        <span class="hidden-mobile">Vue3</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

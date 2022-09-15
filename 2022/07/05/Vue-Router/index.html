@@ -7,45 +7,35 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
-  <link rel="icon" href="/img/fluid.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.png">
+  <link rel="icon" href="/img/icon.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
   <meta name="theme-color" content="#2f4154">
-  <meta name="author" content="John Doe">
+  <meta name="author" content="Deng ErPu">
   <meta name="keywords" content="">
   
     <meta name="description" content="Vue-Router路由（routing）就是通过互联的网络把信息从源地址传输到目的地址的活动. — 维基百科 后端路由 早期的网站开发整个HTML页面是由服务器来渲染的.  服务器直接生产渲染好对应的HTML页面, 返回给客户端进行展示.   但是, 一个网站, 这么多页面服务器如何处理呢?  一个页面有自己对应的网址, 也就是URL.  URL会发送到服务器, 服务器会通过正则对该URL进行匹">
 <meta property="og:type" content="article">
 <meta property="og:title" content="vue-router">
 <meta property="og:url" content="http://example.com/2022/07/05/vue-router/index.html">
-<meta property="og:site_name" content="Hexo">
+<meta property="og:site_name" content="会写Bug的小邓程序员">
 <meta property="og:description" content="Vue-Router路由（routing）就是通过互联的网络把信息从源地址传输到目的地址的活动. — 维基百科 后端路由 早期的网站开发整个HTML页面是由服务器来渲染的.  服务器直接生产渲染好对应的HTML页面, 返回给客户端进行展示.   但是, 一个网站, 这么多页面服务器如何处理呢?  一个页面有自己对应的网址, 也就是URL.  URL会发送到服务器, 服务器会通过正则对该URL进行匹">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://trpora-1300527744.cos.ap-chongqing.myqcloud.com/img/image-20220701153409044.png">
-<meta property="og:image" content="https://trpora-1300527744.cos.ap-chongqing.myqcloud.com/img/image-20220701153618522.png">
-<meta property="og:image" content="https://trpora-1300527744.cos.ap-chongqing.myqcloud.com/img/image-20220701141255271.png">
-<meta property="og:image" content="https://trpora-1300527744.cos.ap-chongqing.myqcloud.com/img/image-20220701154122091.png">
-<meta property="og:image" content="https://trpora-1300527744.cos.ap-chongqing.myqcloud.com/img/image-20220701155325559.png">
-<meta property="og:image" content="https://trpora-1300527744.cos.ap-chongqing.myqcloud.com/img/image-20220701155524333.png">
-<meta property="og:image" content="https://trpora-1300527744.cos.ap-chongqing.myqcloud.com/img/image-20220701155916807.png">
-<meta property="og:image" content="https://trpora-1300527744.cos.ap-chongqing.myqcloud.com/img/image-20220701161311725.png">
-<meta property="og:image" content="https://trpora-1300527744.cos.ap-chongqing.myqcloud.com/img/image-20220701193214936.png">
-<meta property="og:image" content="https://trpora-1300527744.cos.ap-chongqing.myqcloud.com/img/image-20220702085748541.png">
-<meta property="og:image" content="https://trpora-1300527744.cos.ap-chongqing.myqcloud.com/img/image-20220702090126794.png">
-<meta property="og:image" content="https://trpora-1300527744.cos.ap-chongqing.myqcloud.com/img/image-20220702090638418.png">
-<meta property="og:image" content="https://trpora-1300527744.cos.ap-chongqing.myqcloud.com/img/image-20220702110918428.png">
-<meta property="og:image" content="https://trpora-1300527744.cos.ap-chongqing.myqcloud.com/img/image-20220702151838116.png">
+<meta property="og:image" content="http://example.com/img/article/vue2.png">
 <meta property="article:published_time" content="2022-07-05T11:01:32.000Z">
-<meta property="article:modified_time" content="2022-07-05T11:01:51.461Z">
-<meta property="article:author" content="John Doe">
+<meta property="article:modified_time" content="2022-08-29T15:31:49.006Z">
+<meta property="article:author" content="Deng ErPu">
+<meta property="article:tag" content="Vue-Router">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://trpora-1300527744.cos.ap-chongqing.myqcloud.com/img/image-20220701153409044.png">
+<meta name="twitter:image" content="http://example.com/img/article/vue2.png">
   
   
   
-  <title>vue-router - Hexo</title>
+  <title>vue-router - 会写Bug的小邓程序员</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -79,6 +69,10 @@
 
 
 
+  
+<link rel="stylesheet" href="/css/mac.css">
+
+
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
@@ -109,7 +103,7 @@
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
-      <strong>Fluid</strong>
+      <strong>爱写Bug的小邓程序员</strong>
     </a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
@@ -204,7 +198,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+     style="background: url('/img/bg.png') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -647,6 +641,13 @@
               <div class="post-metas my-3">
   
   
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Vue-Router/">#Vue-Router</a>
+      
+    </div>
+  
 </div>
 
 
@@ -662,7 +663,7 @@
       
         <div class="license-meta-item">
           <div>作者</div>
-          <div>John Doe</div>
+          <div>Deng ErPu</div>
         </div>
       
       

@@ -7,26 +7,28 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
-  <link rel="icon" href="/img/fluid.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.png">
+  <link rel="icon" href="/img/icon.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
   <meta name="theme-color" content="#2f4154">
-  <meta name="author" content="John Doe">
+  <meta name="author" content="Deng ErPu">
   <meta name="keywords" content="">
   
     <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
+<meta property="og:title" content="会写Bug的小邓程序员">
 <meta property="og:url" content="http://example.com/index.html">
-<meta property="og:site_name" content="Hexo">
+<meta property="og:site_name" content="会写Bug的小邓程序员">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:author" content="John Doe">
+<meta property="article:author" content="Deng ErPu">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>Hexo</title>
+  <title>会写Bug的小邓程序员</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -52,6 +54,10 @@
     <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
   
 
+
+
+  
+<link rel="stylesheet" href="/css/mac.css">
 
 
 
@@ -84,7 +90,7 @@
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
-      <strong>Fluid</strong>
+      <strong>爱写Bug的小邓程序员</strong>
     </a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
@@ -179,13 +185,13 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+     style="background: url('/img/bg.png') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="An elegant Material-Design theme for Hexo"></span>
+            <span id="subtitle" data-typed-text="曾经有一份真诚的爱情放在我面前，我没有珍惜，等我失去的时候我才后悔莫及，人世间最痛苦的事莫过于此。 如果上天能够给我一个再来一次的机会，我会对那个女孩子说三个字：我爱你。 如果非要在这份爱上加上一个期限，我希望是…… 一万年。"></span>
           
         </div>
 
@@ -220,18 +226,24 @@
   <div class="row mx-auto index-card">
     
     
-    <article class="col-12 col-md-12 mx-auto index-info">
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2022/09/15/Java%208%E6%96%B0%E7%89%B9%E6%80%A7/" target="_self">
+          <img src="/img/article/java.png" srcset="/img/loading.gif" lazyload alt="Java8新特性">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2022/07/05/vue%E7%AC%94%E8%AE%B0/" target="_self">
-          vue笔记
+        <a href="/2022/09/15/Java%208%E6%96%B0%E7%89%B9%E6%80%A7/" target="_self">
+          Java8新特性
         </a>
       </h1>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2022/07/05/vue%E7%AC%94%E8%AE%B0/" target="_self">
+      <a class="index-excerpt " href="/2022/09/15/Java%208%E6%96%B0%E7%89%B9%E6%80%A7/" target="_self">
         <div>
-          Vue.jsVue介绍Vue (读音 &#x2F;vjuː&#x2F;，类似于 view) 是一套用于构建用户界面的渐进式框架。与其它大型框架不同的是，Vue 被设计为可以自底向上逐层应用。Vue 的核心库只关注视图层，不仅易于上手，还便于与第三方库或既有项目整合。另一方面，当与现代化的工具链以及各种支持类库结合使用时，Vue 也完全能够为复杂的单页应用提供驱动。 Vue是一个渐进式的框架： 渐进
+          Java 8新特性 速度更快 代码更少（增加了新的语法：Lambda表达式） 引入强大的 Stream APl 便于并行 最大化减少空指针异常：&#96;Optional&#96;&#96; &#96;&#96;Nashorn引擎，允许在JVM上运行JS&#96; 应用 并行流就是把一个内容分成多个数据块，并用不同的线程分别处理每个数据块的流。相比较串行的流，并行的流可以很大程度上提高程序的执行效
         </div>
       </a>
 
@@ -239,12 +251,19 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2022-07-05 19:02" pubdate>
-              2022-07-05
+            <time datetime="2022-09-15 20:51" pubdate>
+              2022-09-15
             </time>
           </div>
         
         
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Java/">#Java</a>
+            
+          </div>
         
       </div>
     </article>
@@ -253,18 +272,24 @@
   <div class="row mx-auto index-card">
     
     
-    <article class="col-12 col-md-12 mx-auto index-info">
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2022/09/10/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E4%B8%8E%E4%B8%8B%E8%BD%BD/" target="_self">
+          <img src="/img/article/vue2.png" srcset="/img/loading.gif" lazyload alt="文件上传与下载">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2022/07/05/vue-router/" target="_self">
-          vue-router
+        <a href="/2022/09/10/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E4%B8%8E%E4%B8%8B%E8%BD%BD/" target="_self">
+          文件上传与下载
         </a>
       </h1>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2022/07/05/vue-router/" target="_self">
+      <a class="index-excerpt " href="/2022/09/10/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E4%B8%8E%E4%B8%8B%E8%BD%BD/" target="_self">
         <div>
-          Vue-Router路由（routing）就是通过互联的网络把信息从源地址传输到目的地址的活动. — 维基百科 后端路由 早期的网站开发整个HTML页面是由服务器来渲染的.  服务器直接生产渲染好对应的HTML页面, 返回给客户端进行展示.   但是, 一个网站, 这么多页面服务器如何处理呢?  一个页面有自己对应的网址, 也就是URL.  URL会发送到服务器, 服务器会通过正则对该URL进行匹
+          文件上传与下载 文件上传有两套方案：  基于文件流（form-data） 客户端需要把文件转成BASE64   简单的文件上传后端application.properties  设置文件上传的大小限制  1spring.servlet.multipart.max-file-size&#x3D;100MB  123456789101112131415161718192021222324252627282930
         </div>
       </a>
 
@@ -272,12 +297,21 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2022-07-05 19:01" pubdate>
-              2022-07-05
+            <time datetime="2022-09-10 19:01" pubdate>
+              2022-09-10
             </time>
           </div>
         
         
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Vue/">#Vue</a>
+            
+              <a href="/tags/SpringBoot/">#SpringBoot</a>
+            
+          </div>
         
       </div>
     </article>
@@ -286,18 +320,24 @@
   <div class="row mx-auto index-card">
     
     
-    <article class="col-12 col-md-12 mx-auto index-info">
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2022/09/08/Excel%E8%A1%A8%E6%A0%BC%E4%B8%8A%E4%BC%A0%E8%A7%A3%E6%9E%90%E4%B8%8E%E5%AF%BC%E5%87%BA/" target="_self">
+          <img src="/img/article/excel.png" srcset="/img/loading.gif" lazyload alt="Excel表格上传解析与导出">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2022/07/05/VueCli/" target="_self">
-          VueCli
+        <a href="/2022/09/08/Excel%E8%A1%A8%E6%A0%BC%E4%B8%8A%E4%BC%A0%E8%A7%A3%E6%9E%90%E4%B8%8E%E5%AF%BC%E5%87%BA/" target="_self">
+          Excel表格上传解析与导出
         </a>
       </h1>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2022/07/05/VueCli/" target="_self">
+      <a class="index-excerpt " href="/2022/09/08/Excel%E8%A1%A8%E6%A0%BC%E4%B8%8A%E4%BC%A0%E8%A7%A3%E6%9E%90%E4%B8%8E%E5%AF%BC%E5%87%BA/" target="_self">
         <div>
-          Vue Cli 如果你在开发大型项目, 那么你需要, 并且必然需要使用Vue CLI  使用Vue.js开发大型应用时，我们需要考虑代码目录结构、项目结构和部署、热加载、代码单元测试等事情。  如果每个项目都要手动完成这些工作，那无以效率比较低效，所以通常我们会使用一些脚手架工具来帮助完成这些事情。   CLI是什么意思?  CLI是Command-Line Interface, 翻译为命令行界面
+          Excel表格上传解析与导出安装依赖1npm install xlsx  工具类12345678910111213141516171819202122232425262728293031323334353637383940414243&#x2F;&#x2F; 设置异步延迟间隔export function delay(interval &#x3D; 0) &amp;#123;    return new Promise(resolve
         </div>
       </a>
 
@@ -305,12 +345,21 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2022-07-05 19:00" pubdate>
-              2022-07-05
+            <time datetime="2022-09-08 19:01" pubdate>
+              2022-09-08
             </time>
           </div>
         
         
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Vue/">#Vue</a>
+            
+              <a href="/tags/Excel/">#Excel</a>
+            
+          </div>
         
       </div>
     </article>
@@ -319,18 +368,24 @@
   <div class="row mx-auto index-card">
     
     
-    <article class="col-12 col-md-12 mx-auto index-info">
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2022/09/03/Mixins/" target="_self">
+          <img src="/img/article/vue2.png" srcset="/img/loading.gif" lazyload alt="Vue的Mixins">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2022/07/05/axios/" target="_self">
-          axios
+        <a href="/2022/09/03/Mixins/" target="_self">
+          Vue的Mixins
         </a>
       </h1>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2022/07/05/axios/" target="_self">
+      <a class="index-excerpt " href="/2022/09/03/Mixins/" target="_self">
         <div>
-          axios1npm install axios --save  http:&#x2F;&#x2F;httpbin.org&#x2F; http:&#x2F;&#x2F;123.207.32.32:8000&#x2F;home&#x2F;multidata http:&#x2F;&#x2F;123.207.32.32:8000&#x2F;home&#x2F;data?type&#x3D;sell&amp;page&#x3D;1 Vue中发送网络请求有非常多的方式, 那么, 在开发中, 如何选择呢?  选择一: 传统的Ajax是
+          Vue的Mixins混入 (mixin) 提供了一种非常灵活的方式，来分发 Vue 组件中的可复用功能。一个混入对象可以包含任意组件选项。当组件使用混入对象时，所有混入对象的选项将被“混合”进入该组件本身的选项。 mixins-&gt;show.js  里面可以写script标签中export default里面的所有内容  1234567891011121314151617&#x2F;&#x2F; 定义复用的代码e
         </div>
       </a>
 
@@ -338,12 +393,21 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2022-07-05 19:00" pubdate>
-              2022-07-05
+            <time datetime="2022-09-03 20:51" pubdate>
+              2022-09-03
             </time>
           </div>
         
         
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Vue/">#Vue</a>
+            
+              <a href="/tags/Mixins/">#Mixins</a>
+            
+          </div>
         
       </div>
     </article>
@@ -352,18 +416,24 @@
   <div class="row mx-auto index-card">
     
     
-    <article class="col-12 col-md-12 mx-auto index-info">
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2022/09/02/Vuex%E5%AE%9E%E7%8E%B0%E7%8A%B6%E6%80%81%E6%8C%81%E4%B9%85%E5%8C%96/" target="_self">
+          <img src="/img/article/vue2.png" srcset="/img/loading.gif" lazyload alt="VueX状态持久化">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2022/07/05/webpack/" target="_self">
-          webpack
+        <a href="/2022/09/02/Vuex%E5%AE%9E%E7%8E%B0%E7%8A%B6%E6%80%81%E6%8C%81%E4%B9%85%E5%8C%96/" target="_self">
+          VueX状态持久化
         </a>
       </h1>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2022/07/05/webpack/" target="_self">
+      <a class="index-excerpt " href="/2022/09/02/Vuex%E5%AE%9E%E7%8E%B0%E7%8A%B6%E6%80%81%E6%8C%81%E4%B9%85%E5%8C%96/" target="_self">
         <div>
-          webpack什么是webpack？  At its core, webpack is a static module bundler for modern JavaScript applications.  从本质上来讲，webpack是一个现代的JavaScript应用的静态模块打包工具。  前端模块化：  在前面学习中，我已经用了大量的篇幅解释了为什么前端需要模块化。 而且我也提到了目前使用
+          Vuex实现状态持久化vuex的数据是保存在内存中的，浏览器一刷新就会消失。所以要对Vuex的数据进行持久化管理 刚开始改变数据，调用 this.$store.commit(&#39;CHANGE_FLAG&#39;,!this.flag)，改变完的数据会存储在localStorge里面，当页面加载的时候调用 this.$store.dispatch(&#39;LOAD_IONF&#39;)，从l
         </div>
       </a>
 
@@ -371,12 +441,21 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2022-07-05 18:58" pubdate>
-              2022-07-05
+            <time datetime="2022-09-02 11:45" pubdate>
+              2022-09-02
             </time>
           </div>
         
         
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Vue/">#Vue</a>
+            
+              <a href="/tags/Vuex/">#Vuex</a>
+            
+          </div>
         
       </div>
     </article>
@@ -385,18 +464,24 @@
   <div class="row mx-auto index-card">
     
     
-    <article class="col-12 col-md-12 mx-auto index-info">
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2022/09/01/Vue%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86/" target="_self">
+          <img src="/img/article/vue2.png" srcset="/img/loading.gif" lazyload alt="Vue权限管理">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2022/06/26/hello-world/" target="_self">
-          Hello World
+        <a href="/2022/09/01/Vue%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86/" target="_self">
+          Vue权限管理
         </a>
       </h1>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2022/06/26/hello-world/" target="_self">
+      <a class="index-excerpt " href="/2022/09/01/Vue%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86/" target="_self">
         <div>
-          Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick
+          Vue权限管理addRouterrouter-&gt;index.js 1234567891011121314151617181920212223242526272829import Vue from &amp;#x27;vue&amp;#x27;import VueRouter from &amp;#x27;vue-router&amp;#x27;Vue.use(VueRouter)const routes &#x3D; []&#x2F;&#x2F; 动态
         </div>
       </a>
 
@@ -404,12 +489,21 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2022-06-26 22:28" pubdate>
-              2022-06-26
+            <time datetime="2022-09-01 20:51" pubdate>
+              2022-09-01
             </time>
           </div>
         
         
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Vue/">#Vue</a>
+            
+              <a href="/tags/%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86/">#权限管理</a>
+            
+          </div>
         
       </div>
     </article>
@@ -418,16 +512,164 @@
   <div class="row mx-auto index-card">
     
     
-    <article class="col-12 col-md-12 mx-auto index-info">
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2022/08/31/vue%E5%8A%A8%E6%80%81%E8%B7%AF%E7%94%B1%E6%B8%B2%E6%9F%93%E8%8F%9C%E5%8D%95/" target="_self">
+          <img src="/img/article/vue2.png" srcset="/img/loading.gif" lazyload alt="Vue动态菜单,面包屑">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2022/06/26/hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/" target="_self">
-          
+        <a href="/2022/08/31/vue%E5%8A%A8%E6%80%81%E8%B7%AF%E7%94%B1%E6%B8%B2%E6%9F%93%E8%8F%9C%E5%8D%95/" target="_self">
+          Vue动态菜单,面包屑
         </a>
       </h1>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2022/06/26/hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/" target="_self">
+      <a class="index-excerpt " href="/2022/08/31/vue%E5%8A%A8%E6%80%81%E8%B7%AF%E7%94%B1%E6%B8%B2%E6%9F%93%E8%8F%9C%E5%8D%95/" target="_self">
+        <div>
+          Vue动态菜单,面包屑vue动态路由渲染菜单实现效果：  准备数据：mock&#x2F;index.json  “menuType”: “1”,   菜单 “menuType”: “2”,    按钮  12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-08-31 20:51" pubdate>
+              2022-08-31
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Vue/">#Vue</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2022/08/29/Markdown%E8%AF%AD%E6%B3%95/" target="_self">
+          <img src="/img/article/markdown.png" srcset="/img/loading.gif" lazyload alt="Markdown语法">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/08/29/Markdown%E8%AF%AD%E6%B3%95/" target="_self">
+          Markdown语法
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt " href="/2022/08/29/Markdown%E8%AF%AD%E6%B3%95/" target="_self">
+        <div>
+          Markdown语法多级标题 快捷键 ctrl + 数字（1-6分别对应不同标题）  ctrl + 0 清楚样式  123456# 一级标题  （#和文字之间有空格）## 二级标题### 三级标题#### 四级标题##### 五级标题###### 六级标题  效果如下： 有序列表 有序列表快捷键：ctrl+shift+[  （选中文字）  1234561. 有序1  (1. 和文字之间有空格)2.
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-08-29 22:51" pubdate>
+              2022-08-29
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/MarkDown/">#MarkDown</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2022/08/29/%E9%98%B2%E6%8A%96%E5%92%8C%E8%8A%82%E6%B5%81/" target="_self">
+          <img src="/img/article/debounce.png" srcset="/img/loading.gif" lazyload alt="防抖和节流">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/08/29/%E9%98%B2%E6%8A%96%E5%92%8C%E8%8A%82%E6%B5%81/" target="_self">
+          防抖和节流
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt " href="/2022/08/29/%E9%98%B2%E6%8A%96%E5%92%8C%E8%8A%82%E6%B5%81/" target="_self">
+        <div>
+          防抖和节流 节流: n 秒内只运行一次，若在 n 秒内重复触发，只有一次生效(间隔时间，延迟触发) 防抖: n 秒后在执行该事件，若在 n 秒内被重复触发，则重新计时（节约性能，只触发最后一次）  防抖思路： 事件函数执行,先创建个定时器  把逻辑代码放到定时器中  当函数再次触发,清除定时器  创建—个新定时器即司   基础使用： 1234567891011121314&#x2F;&#x2F; 问题: 搜索框只要改
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-08-29 11:11" pubdate>
+              2022-08-29
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E5%89%8D%E7%AB%AF/">#前端</a>
+            
+              <a href="/tags/JavaScript/">#JavaScript</a>
+            
+              <a href="/tags/%E9%98%B2%E6%8A%96%E5%92%8C%E8%8A%82%E6%B5%81/">#防抖和节流</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2022/08/28/hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/" target="_self">
+          <img src="/img/article/hexo.png" srcset="/img/loading.gif" lazyload alt="hexo博客搭建">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/08/28/hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/" target="_self">
+          hexo博客搭建
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt " href="/2022/08/28/hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/" target="_self">
         <div>
           hexo博客搭建1.安装node.js官网下载地址：https:&#x2F;&#x2F;nodejs.org&#x2F;en&#x2F;  win+r  输入 cmd进入命令行，查看node版本 12node -v  npm -v   安装cnpm,使用国内镜像淘宝 1npm install -g cnpm --registry&#x3D;https:&#x2F;&#x2F;registry.npm.taobao.org   2.安装hexo-cli1cnpm in
         </div>
@@ -437,18 +679,31 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2022-06-26 21:07" pubdate>
-              2022-06-26
+            <time datetime="2022-08-28 22:51" pubdate>
+              2022-08-28
             </time>
           </div>
         
         
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Hexo/">#Hexo</a>
+            
+          </div>
         
       </div>
     </article>
   </div>
 
 
+
+  <nav aria-label="navigation">
+    <span class="pagination" id="pagination">
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/#board">2</a><a class="page-number" href="/page/3/#board">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/#board">5</a><a class="extend next" rel="next" href="/page/2/#board"><i class="iconfont icon-arrowright"></i></a>
+    </span>
+  </nav>
 
 
 
