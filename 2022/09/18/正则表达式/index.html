@@ -1,0 +1,664 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.png">
+  <link rel="icon" href="/img/icon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Deng ErPu">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="正则表达式入门体验： 12345678910111213141516171819202122232425262728293031package com.ep.regexp;import java.util.regex.Matcher;import java.util.regex.Pattern;&#x2F;*** * @author dep * @version 1.0 *&#x2F;public class Reg">
+<meta property="og:type" content="article">
+<meta property="og:title" content="正则表达式">
+<meta property="og:url" content="http://example.com/2022/09/18/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/index.html">
+<meta property="og:site_name" content="会写Bug的小邓程序员">
+<meta property="og:description" content="正则表达式入门体验： 12345678910111213141516171819202122232425262728293031package com.ep.regexp;import java.util.regex.Matcher;import java.util.regex.Pattern;&#x2F;*** * @author dep * @version 1.0 *&#x2F;public class Reg">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/img/article/regexp.png">
+<meta property="article:published_time" content="2022-09-18T12:51:00.000Z">
+<meta property="article:modified_time" content="2022-09-23T15:09:05.262Z">
+<meta property="article:author" content="Deng ErPu">
+<meta property="article:tag" content="正则表达式">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/img/article/regexp.png">
+  
+  
+  
+  <title>正则表达式 - 会写Bug的小邓程序员</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/mac.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>爱写Bug的小邓程序员</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/bg.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="正则表达式"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-09-18 20:51" pubdate>
+          2022年9月18日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          23k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          196 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">正则表达式</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h2><p>入门体验：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.ep.regexp;<br><br><span class="hljs-keyword">import</span> java.util.regex.Matcher;<br><span class="hljs-keyword">import</span> java.util.regex.Pattern;<br><br><span class="hljs-comment">/***</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@author</span> dep</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@version</span> 1.0</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Regexp_</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        <span class="hljs-type">String</span> <span class="hljs-variable">content</span> <span class="hljs-operator">=</span><span class="hljs-string">&quot;&lt;/i&gt;&lt;span class=\&quot;refresh-text_1-d1i\&quot;&gt;换一换&lt;/span&gt;&lt;/a&gt;&lt;/div&gt;&quot;</span> +<br>                <span class="hljs-string">&quot;&lt;/div&gt;&lt;div class=\&quot;opr-toplist1-table_3K7iH\&quot;&gt;&lt;div&gt;&quot;</span> +<br>                <span class="hljs-string">&quot;&lt;div class=\&quot;toplist1-tr_4kE4D\&quot;&gt;&quot;</span> +<br>                <span class="hljs-string">&quot;&lt;div class=\&quot;toplist1-td_3zMd4 opr-toplist1-link_2YUtD\&quot;&gt;&quot;</span> +<br>                <span class="hljs-string">&quot;&lt;span class=\&quot;c-index-single toplist1-hot_2RbQT  c-color-red toplist1-hot-normal_12THH\&quot; style=\&quot;opacity:1;\&quot;&gt;&lt;i class=\&quot;c-icon icon-top_4eWFz\&quot;&gt;\uE662&lt;/i&gt;&lt;/span&gt;&lt;a target=\&quot;_blank\&quot; title=\&quot;中国探月未来已来\&quot; href=\&quot;/s?wd=%E4%B8%AD%E5%9B%BD%E6%8E%A2%E6%9C%88%E6%9C%AA%E6%9D%A5%E5%B7%B2%E6%9D%A5&amp;amp;rsv_idx=2&amp;amp;tn=baiduhome_pg&amp;amp;usm=6&amp;amp;ie=utf-8&amp;amp;rsv_pq=a0a7c60a000bb8de&amp;amp;oq=1&amp;amp;rsv_t=c46eXOFH6I1ZTI4TBKaqzEMnM2CSghlBdsza4L85Px5VaFjdgenaUxdgvyVpPKy4Apyn&amp;amp;rqid=a0a7c60a000bb8de&amp;amp;rsf=6b09c17bb5c330f4b81b97b89bec9db9_1_15_1&amp;amp;rsv_dl=0_right_fyb_pchot_20811&amp;amp;sa=0_right_fyb_pchot_20811\&quot; class=\&quot;c-font-medium c-color-t opr-toplist1-subtitle_3FULy\&quot; data-click=\&quot;&#123;&amp;#39;clk_info&amp;#39;: &amp;#39;index: 1, page: 1&amp;#39;&#125;\&quot;&gt;中国探月未来已来&lt;/a&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=\&quot;toplist1-tr_4kE4D\&quot;&gt;&lt;div class=\&quot;toplist1-td_3zMd4 opr-toplist1-link_2YUtD\&quot;&gt;&lt;span class=\&quot;c-index-single toplist1-hot_2RbQT   c-index-single-hot1\&quot; style=\&quot;opacity:1;\&quot;&gt;1&lt;/span&gt;&lt;a target=\&quot;_blank\&quot; title=\&quot;乌方：乌军已突破至乌俄边境地区\&quot; href=\&quot;/s?wd=%E4%B9%8C%E6%96%B9%EF%BC%9A%E4%B9%8C%E5%86%9B%E5%B7%B2%E7%AA%81%E7%A0%B4%E8%87%B3%E4%B9%8C%E4%BF%84%E8%BE%B9%E5%A2%83%E5%9C%B0%E5%8C%BA&amp;amp;rsv_idx=2&amp;amp;tn=baiduhome_pg&amp;amp;usm=6&amp;amp;ie=utf-8&amp;amp;rsv_pq=a0a7c60a000bb8de&amp;amp;oq=1&amp;amp;rsv_t=c46eXOFH6I1ZTI4TBKaqzEMnM2CSghlBdsza4L85Px5VaFjdgenaUxdgvyVpPKy4Apyn&amp;amp;rqid=a0a7c60a000bb8de&amp;amp;rsf=6b09c17bb5c330f4b81b97b89bec9db9_1_15_2&amp;amp;rsv_dl=0_right_fyb_pchot_20811&amp;amp;sa=0_right_fyb_pchot_20811\&quot; class=\&quot;c-font-medium c-color-t opr-toplist1-subtitle_3FULy\&quot; data-click=\&quot;&#123;&amp;#39;clk_info&amp;#39;: &amp;#39;index: 2, page: 1&amp;#39;&#125;\&quot;&gt;乌方：乌军已突破至乌俄边境地区&lt;/a&gt;&lt;span class=\&quot;c-text c-text-hot opr-toplist1-label_3Mevn\&quot;&gt;热&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=\&quot;toplist1-tr_4kE4D\&quot;&gt;&lt;div class=\&quot;toplist1-td_3zMd4 opr-toplist1-link_2YUtD\&quot;&gt;&lt;span class=\&quot;c-index-single toplist1-hot_2RbQT   c-index-single-hot2\&quot; style=\&quot;opacity:1;\&quot;&gt;2&lt;/span&gt;&lt;a target=\&quot;_blank\&quot; title=\&quot;外籍男子骚扰女性被拘7日限期出境\&quot; href=\&quot;/s?wd=%E5%A4%96%E7%B1%8D%E7%94%B7%E5%AD%90%E9%AA%9A%E6%89%B0%E5%A5%B3%E6%80%A7%E8%A2%AB%E6%8B%987%E6%97%A5%E9%99%90%E6%9C%9F%E5%87%BA%E5%A2%83&amp;amp;rsv_idx=2&amp;amp;tn=baiduhome_pg&amp;amp;usm=6&amp;amp;ie=utf-8&amp;amp;rsv_pq=a0a7c60a000bb8de&amp;amp;oq=1&amp;amp;rsv_t=c46eXOFH6I1ZTI4TBKaqzEMnM2CSghlBdsza4L85Px5VaFjdgenaUxdgvyVpPKy4Apyn&amp;amp;rqid=a0a7c60a000bb8de&amp;amp;rsf=6b09c17bb5c330f4b81b97b89bec9db9_1_15_3&amp;amp;rsv_dl=0_right_fyb_pchot_20811&amp;amp;sa=0_right_fyb_pchot_20811\&quot; class=\&quot;c-font-medium c-color-t opr-toplist1-subtitle_3FULy\&quot; data-click=\&quot;&#123;&amp;#39;clk_info&amp;#39;: &amp;#39;index: 3, page: 1&amp;#39;&#125;\&quot;&gt;外籍男子骚扰女性被拘7日限期出境&lt;/a&gt;&lt;span class=\&quot;c-text c-text-hot opr-toplist1-label_3Mevn\&quot;&gt;热&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=\&quot;toplist1-tr_4kE4D\&quot;&gt;&lt;div class=\&quot;toplist1-td_3zMd4 opr-toplist1-link_2YUtD\&quot;&gt;&lt;span class=\&quot;c-index-single toplist1-hot_2RbQT   c-index-single-hot3\&quot; style=\&quot;opacity:1;\&quot;&gt;3&lt;/span&gt;&lt;a target=\&quot;_blank\&quot; title=\&quot;消防员为震区老乡手写感谢信\&quot; href=\&quot;/s?wd=%E6%B6%88%E9%98%B2%E5%91%98%E4%B8%BA%E9%9C%87%E5%8C%BA%E8%80%81%E4%B9%A1%E6%89%8B%E5%86%99%E6%84%9F%E8%B0%A2%E4%BF%A1&amp;amp;rsv_idx=2&amp;amp;tn=baiduhome_pg&amp;amp;usm=6&amp;amp;ie=utf-8&amp;amp;rsv_pq=a0a7c60a000bb8de&amp;amp;oq=1&amp;amp;rsv_t=c46eXOFH6I1ZTI4TBKaqzEMnM2CSghlBdsza4L85Px5VaFjdgenaUxdgvyVpPKy4Apyn&amp;amp;rqid=a0a7c60a000bb8de&amp;amp;rsf=6b09c17bb5c330f4b81b97b89bec9db9_1_15_4&amp;amp;rsv_dl=0_right_fyb_pchot_20811&amp;amp;sa=0_right_fyb_pchot_20811\&quot; class=\&quot;c-font-medium c-color-t opr-toplist1-subtitle_3FULy\&quot; data-click=\&quot;&#123;&amp;#39;clk_info&amp;#39;: &amp;#39;index: 4, page: 1&amp;#39;&#125;\&quot;&gt;消防员为震区老乡手写感谢信&lt;/a&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=\&quot;toplist1-tr_4kE4D\&quot;&gt;&lt;div class=\&quot;toplist1-td_3zMd4 opr-toplist1-link_2YUtD\&quot;&gt;&lt;span class=\&quot;c-index-single toplist1-hot_2RbQT   toplist1-hot-normal_12THH\&quot; style=\&quot;opacity:1;\&quot;&gt;4&lt;/span&gt;&lt;a target=\&quot;_blank\&quot; title=\&quot;老人赶集卖的鸭被闷死 路人纷纷买下\&quot; href=\&quot;/s?wd=%E8%80%81%E4%BA%BA%E8%B5%B6%E9%9B%86%E5%8D%96%E7%9A%84%E9%B8%AD%E8%A2%AB%E9%97%B7%E6%AD%BB%20%E8%B7%AF%E4%BA%BA%E7%BA%B7%E7%BA%B7%E4%B9%B0%E4%B8%8B&amp;amp;rsv_idx=2&amp;amp;tn=baiduhome_pg&amp;amp;usm=6&amp;amp;ie=utf-8&amp;amp;rsv_pq=a0a7c60a000bb8de&amp;amp;oq=1&amp;amp;rsv_t=e966suftTwhfvF%2B4kx5q4iSVPInibMp2RJIAQrHE1aaQeK8zR51%2BAbjkA%2BhyOju979wr&amp;amp;rqid=a0a7c60a000bb8de&amp;amp;rsf=6b09c17bb5c330f4b81b97b89bec9db9_1_15_5&amp;amp;rsv_dl=0_right_fyb_pchot_20811&amp;amp;sa=0_right_fyb_pchot_20811\&quot; class=\&quot;c-font-medium c-color-t opr-toplist1-subtitle_3FULy\&quot; data-click=\&quot;&#123;&amp;#39;clk_info&amp;#39;: &amp;#39;index: 5, page: 1&amp;#39;&#125;\&quot;&gt;老人赶集卖的鸭被闷死 路人纷纷买下&lt;/a&gt;&lt;/div&gt;;</span><br><span class="hljs-string"></span><br><span class="hljs-string">        //1. 先创建一个 Pattern 对象 ， 模式对象, 可以理解成就是一个正则表达式对象</span><br><span class="hljs-string">        // Pattern pattern = Pattern.compile(&quot;</span>[a-zA-Z]+<span class="hljs-string">&quot;);</span><br><span class="hljs-string">        // Pattern pattern = Pattern.compile(&quot;</span>[<span class="hljs-number">0</span>-<span class="hljs-number">9</span>]+<span class="hljs-string">&quot;);</span><br><span class="hljs-string">        // Pattern pattern = Pattern.compile(&quot;</span>([a-zA-Z]+)|([<span class="hljs-number">0</span>-<span class="hljs-number">9</span>]+)<span class="hljs-string">&quot;);</span><br><span class="hljs-string">        Pattern pattern = Pattern.compile(&quot;</span>a target=\<span class="hljs-string">&quot;_blank\&quot; title=\&quot;(\\S*)\&quot;&quot;</span>);<br>        <span class="hljs-type">Matcher</span> <span class="hljs-variable">matcher</span> <span class="hljs-operator">=</span> pattern.matcher(content);<br>        <span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">while</span> (matcher.find()) &#123;<br>            <span class="hljs-comment">//System.out.println((++i) + &quot;:&quot; + matcher.group(0));</span><br>            System.out.println((++i) + <span class="hljs-string">&quot;:&quot;</span> + matcher.group(<span class="hljs-number">1</span>));<br>        &#125;<br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<h3 id="正则表达式底层实现"><a href="#正则表达式底层实现" class="headerlink" title="正则表达式底层实现"></a>正则表达式底层实现</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.ep.regexp;<br><br><span class="hljs-keyword">import</span> java.util.regex.Matcher;<br><span class="hljs-keyword">import</span> java.util.regex.Pattern;<br><br><span class="hljs-comment">/***</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@author</span> dep</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@version</span> 1.0</span><br><span class="hljs-comment"> * 析 java 的正则表达式的底层实现(重要.)</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">RegTheory</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        <span class="hljs-type">String</span> <span class="hljs-variable">content</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;1998 年 12 月 8 日，第二代 Java 平台的企业版 J2EE 发布。1999 年 6 月，Sun 公司发布了&quot;</span><br>                + <span class="hljs-string">&quot;第二代 Java 平台（简称为 Java2）的 3 个版本：J2ME（Java2 Micro Edition，Java2 平台的微型&quot;</span><br>                + <span class="hljs-string">&quot;版），应用于移动、无线及有限资源的环境；J2SE（Java 2 Standard Edition，Java 2 平台的&quot;</span><br>                + <span class="hljs-string">&quot;标准版），应用于桌面环境；J2EE（Java 2Enterprise Edition，Java 2 平台的企业版），应&quot;</span><br>                + <span class="hljs-string">&quot;用 3443 于基于 Java 的应用服务器。Java 2 平台的发布，是 Java 发展过程中最重要的一个&quot;</span><br>                + <span class="hljs-string">&quot;里程碑，标志着 Java 的应用开始普及 9889 &quot;</span>;<br>        <span class="hljs-comment">//目标：匹配所有四个数字</span><br>        <span class="hljs-comment">// 说明</span><br>        <span class="hljs-comment">// 1. \\d 表示一个任意的数字</span><br>        <span class="hljs-type">String</span> <span class="hljs-variable">regStr</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;(\\d\\d)(\\d\\d)&quot;</span>;<br>        <span class="hljs-comment">//2. 创建模式对象[即正则表达式对象]</span><br>        <span class="hljs-type">Pattern</span> <span class="hljs-variable">pattern</span> <span class="hljs-operator">=</span> Pattern.compile(regStr);<br>        <span class="hljs-comment">//3. 创建匹配器</span><br>        <span class="hljs-comment">// 说明：创建匹配器 matcher， 按照 正则表达式的规则 去匹配 content 字符串</span><br>        <span class="hljs-type">Matcher</span> <span class="hljs-variable">matcher</span> <span class="hljs-operator">=</span> pattern.matcher(content);<br><br>        <span class="hljs-comment">/**</span><br><span class="hljs-comment">         * matcher.find() 完成的任务 （考虑分组）</span><br><span class="hljs-comment">         * 什么是分组，比如 (\d\d)(\d\d) ,正则表达式中有() 表示分组,第 1 个()表示第 1 组,第 2 个()表示第 2 组...</span><br><span class="hljs-comment">         * 1. 根据指定的规则 ,定位满足规则的子字符串(比如(19)(98))</span><br><span class="hljs-comment">         * 2. 找到后，将 子字符串的开始的索引记录到 matcher 对象的属性 int[] groups;</span><br><span class="hljs-comment">         *  2.1 groups[0] = 0 , 把该子字符串的结束的索引+1 的值记录到 groups[1] = 4</span><br><span class="hljs-comment">         *  2.2 记录 1 组()匹配到的字符串 groups[2] = 0 groups[3] = 2</span><br><span class="hljs-comment">         *  2.3 记录 2 组()匹配到的字符串 groups[4] = 2 groups[5] = 4</span><br><span class="hljs-comment">         *  2.4.如果有更多的分组.....</span><br><span class="hljs-comment">         * 3. 同时记录 oldLast 的值为 子字符串的结束的 索引+1 的值即 35, 即下次执行 find 时，就从 35 开始匹 配</span><br><span class="hljs-comment">         *     public String group(int group) &#123;</span><br><span class="hljs-comment">         *         if (first &lt; 0)</span><br><span class="hljs-comment">         *             throw new IllegalStateException(&quot;No match found&quot;);</span><br><span class="hljs-comment">         *         if (group &lt; 0 || group &gt; groupCount())</span><br><span class="hljs-comment">         *             throw new IndexOutOfBoundsException(&quot;No group &quot; + group);</span><br><span class="hljs-comment">         *         if ((groups[group*2] == -1) || (groups[group*2+1] == -1))</span><br><span class="hljs-comment">         *             return null;</span><br><span class="hljs-comment">         *         return getSubSequence(groups[group * 2], groups[group * 2 + 1]).toString();</span><br><span class="hljs-comment">         *     &#125;</span><br><span class="hljs-comment">         *</span><br><span class="hljs-comment">         *     1. 根据 groups[0]=0 和 groups[1]=2 的记录的位置，从 content 开始截取子字符串返回</span><br><span class="hljs-comment">         *     就是 [0,2) 包含 0 但是不包含索引为 2 的位置</span><br><span class="hljs-comment">         */</span><br>        <span class="hljs-keyword">while</span> (matcher.find()) &#123;<br>            <span class="hljs-comment">//1. 如果正则表达式有() 即分组</span><br>            <span class="hljs-comment">// 2. 取出匹配的字符串规则如下</span><br>            <span class="hljs-comment">// 3. group(0) 表示匹配到的子字符串</span><br>            <span class="hljs-comment">// 4. group(1) 表示匹配到的子字符串的第一组字串</span><br>            <span class="hljs-comment">// 5. group(2) 表示匹配到的子字符串的第 2 组字串</span><br>            System.out.println(matcher.group(<span class="hljs-number">0</span>));<br>            System.out.println(<span class="hljs-string">&quot;第一组: &quot;</span> + matcher.group(<span class="hljs-number">1</span>));<br>            System.out.println(<span class="hljs-string">&quot;第二组: &quot;</span> + matcher.group(<span class="hljs-number">2</span>));<br>        &#125;<br>    &#125;<br><br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<h3 id="正则表达式语法"><a href="#正则表达式语法" class="headerlink" title="正则表达式语法"></a>正则表达式语法</h3><p><img src="https://trpora-1300527744.cos.ap-chongqing.myqcloud.com/img/image-20220913153013163.png" srcset="/img/loading.gif" lazyload alt="image-20220913153013163"></p>
+<h4 id="元字符-Metacharacter-转义号"><a href="#元字符-Metacharacter-转义号" class="headerlink" title="元字符(Metacharacter)-转义号 \"></a>元字符(Metacharacter)-转义号 \</h4><p><img src="https://trpora-1300527744.cos.ap-chongqing.myqcloud.com/img/image-20220913153041291.png" srcset="/img/loading.gif" lazyload alt="image-20220913153041291"></p>
+<p><img src="https://trpora-1300527744.cos.ap-chongqing.myqcloud.com/img/image-20220913153127333.png" srcset="/img/loading.gif" lazyload alt="image-20220913153127333"></p>
+<h4 id="元字符-字符匹配符"><a href="#元字符-字符匹配符" class="headerlink" title="元字符-字符匹配符"></a>元字符-字符匹配符</h4><p><img src="https://trpora-1300527744.cos.ap-chongqing.myqcloud.com/img/image-20220913153227267.png" srcset="/img/loading.gif" lazyload alt="image-20220913153227267"></p>
+<p><img src="https://trpora-1300527744.cos.ap-chongqing.myqcloud.com/img/image-20220913153412507.png" srcset="/img/loading.gif" lazyload alt="image-20220913153412507"></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.ep.regexp;<br><br><span class="hljs-keyword">import</span> java.util.regex.Matcher;<br><span class="hljs-keyword">import</span> java.util.regex.Pattern;<br><br><span class="hljs-comment">/***</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@author</span> dep</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@version</span> 1.0</span><br><span class="hljs-comment"> * 字符匹配符 的使用</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">RegExp02</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        <span class="hljs-type">String</span> <span class="hljs-variable">content</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;a11c8abc _ABCy @\n&quot;</span>;<br>        <span class="hljs-comment">//String regStr = &quot;[a-z]&quot;; //匹配 a-z 之间任意一个字符</span><br>        <span class="hljs-comment">//String regStr = &quot;[A-Z]&quot;; //匹配 A-Z 之间任意一个字符</span><br>        <span class="hljs-comment">//String regStr = &quot;abc&quot;; //匹配 abc 字符串[默认区分大小写]</span><br>        <span class="hljs-comment">//String regStr = &quot;(?i)abc&quot;; //匹配 abc 字符串[不区分大小写]</span><br>        <span class="hljs-comment">//String regStr = &quot;a((?i)b)c&quot;; // b不区分大小写</span><br>        <span class="hljs-comment">//String regStr = &quot;[0-9]&quot;; //匹配 0-9 之间任意一个字符</span><br>        <span class="hljs-comment">//String regStr = &quot;[^a-z]&quot; ;//匹配 不在 a-z 之间任意一个字符</span><br>        <span class="hljs-comment">//String regStr = &quot;[abcd]&quot;; //匹配 在 abcd 中任意一个字符</span><br>        <span class="hljs-comment">//String regStr = &quot;[^\\d]&quot;;//匹配 不在 0-9 的任意一个字符</span><br>        <span class="hljs-comment">//String regStr = &quot;\\D&quot;;//匹配 不在 0-9 的任意一个字符</span><br>        <span class="hljs-comment">//String regStr = &quot;\\w&quot;; //匹配 大小写英文字母, 数字，下划线</span><br>        <span class="hljs-comment">//String regStr = &quot;\\W&quot;;//匹配 等价于 [^a-zA-Z0-9_]</span><br>        <span class="hljs-comment">//String regStr = &quot;\\s&quot;;//\\s 匹配任何空白字符(空格,制表符等)</span><br><br>        <span class="hljs-comment">//\\S 匹配任何非空白字符 ,和\\s 刚好相反</span><br>        <span class="hljs-comment">//String regStr = &quot;\\S&quot;;</span><br>        <span class="hljs-comment">//. 匹配除 \n 之外的所有字符,如果要匹配.本身则需要使用 \\.</span><br>        <span class="hljs-type">String</span> <span class="hljs-variable">regStr</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;.&quot;</span>;<br><br>        <span class="hljs-comment">//Pattern pattern = Pattern.compile(regStr,Pattern.CASE_INSENSITIVE); // 不区分大小写</span><br>        <span class="hljs-type">Pattern</span> <span class="hljs-variable">pattern</span> <span class="hljs-operator">=</span> Pattern.compile(regStr);<br>        <span class="hljs-type">Matcher</span> <span class="hljs-variable">matcher</span> <span class="hljs-operator">=</span> pattern.matcher(content);<br>        <span class="hljs-keyword">while</span> (matcher.find()) &#123;<br>            System.out.println(<span class="hljs-string">&quot;找到 &quot;</span> + matcher.group(<span class="hljs-number">0</span>));<br>        &#125;<br><br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<h4 id="元字符-选择匹配符"><a href="#元字符-选择匹配符" class="headerlink" title="元字符-选择匹配符"></a>元字符-选择匹配符</h4><p><img src="https://trpora-1300527744.cos.ap-chongqing.myqcloud.com/img/image-20220913162751497.png" srcset="/img/loading.gif" lazyload alt="image-20220913162751497"></p>
+<h4 id="元字符-限定符"><a href="#元字符-限定符" class="headerlink" title="元字符-限定符"></a>元字符-限定符</h4><p>用于指定其前面的字符和组合项连续出现多少次</p>
+<p><img src="https://trpora-1300527744.cos.ap-chongqing.myqcloud.com/img/image-20220913162835981.png" srcset="/img/loading.gif" lazyload alt="image-20220913162835981"></p>
+<p><img src="https://trpora-1300527744.cos.ap-chongqing.myqcloud.com/img/image-20220913162931819.png" srcset="/img/loading.gif" lazyload alt="image-20220913162931819"></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.ep.regexp;<br><br><span class="hljs-keyword">import</span> java.util.regex.Matcher;<br><span class="hljs-keyword">import</span> java.util.regex.Pattern;<br><br><span class="hljs-comment">/***</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@author</span> dep</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@version</span> 1.0</span><br><span class="hljs-comment"> * 限定符的使用</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">RegExp03</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        <span class="hljs-type">String</span> <span class="hljs-variable">content</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;a211111aaaaaahello&quot;</span>;<br>        <span class="hljs-comment">//a&#123;3&#125;,1&#123;4&#125;,\\d&#123;2&#125;</span><br>        <span class="hljs-comment">// String regStr = &quot;a&#123;3&#125;&quot;;// 表示匹配 aaa</span><br>        <span class="hljs-comment">// String regStr = &quot;1&#123;4&#125;&quot;;// 表示匹配 1111</span><br>        <span class="hljs-comment">// String regStr = &quot;\\d&#123;2&#125;&quot;;// 表示匹配 两位的任意数字字符</span><br>        <span class="hljs-comment">// 细节：java 匹配默认贪婪匹配，即尽可能匹配多的</span><br>        <span class="hljs-comment">// String regStr = &quot;a&#123;3,4&#125;&quot;; //表示匹配 aaa 或者 aaaa</span><br>        <span class="hljs-comment">// String regStr = &quot;1&#123;4,5&#125;&quot;; //表示匹配 1111 或者 11111</span><br>        <span class="hljs-comment">// String regStr = &quot;\\d&#123;2,5&#125;&quot;; //匹配 2 位数或者 3,4,5</span><br>        <span class="hljs-comment">// String regStr = &quot;1+&quot;; //匹配一个 1 或者多个 1</span><br>        <span class="hljs-comment">// String regStr = &quot;\\d+&quot;; //匹配一个数字或者多个数字</span><br>        <span class="hljs-comment">//String regStr = &quot;1*&quot;; //匹配 0 个 1 或者多个 1</span><br>        <span class="hljs-type">String</span> <span class="hljs-variable">regStr</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;a1?&quot;</span>; <span class="hljs-comment">//匹配 a 或者 a1</span><br><br>        <span class="hljs-type">Pattern</span> <span class="hljs-variable">pattern</span> <span class="hljs-operator">=</span> Pattern.compile(regStr);<br>        <span class="hljs-type">Matcher</span> <span class="hljs-variable">matcher</span> <span class="hljs-operator">=</span> pattern.matcher(content);<br>        <span class="hljs-keyword">while</span> (matcher.find()) &#123;<br>            System.out.println(matcher.group(<span class="hljs-number">0</span>));<br>        &#125;<br><br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<h4 id="元字符-定位符"><a href="#元字符-定位符" class="headerlink" title="元字符-定位符"></a>元字符-定位符</h4><p><img src="https://trpora-1300527744.cos.ap-chongqing.myqcloud.com/img/image-20220913193538575.png" srcset="/img/loading.gif" lazyload alt="image-20220913193538575"></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.ep.regexp;<br><br><span class="hljs-keyword">import</span> java.util.regex.Matcher;<br><span class="hljs-keyword">import</span> java.util.regex.Pattern;<br><br><span class="hljs-comment">/***</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@author</span> dep</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@version</span> 1.0</span><br><span class="hljs-comment"> * 定位符的使用</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">RegExp04</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        <span class="hljs-type">String</span> <span class="hljs-variable">content</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;123-abc&quot;</span>;<br>        <span class="hljs-comment">// 以至少 1 个数字开头，后接任意个小写字母的字符串</span><br>        <span class="hljs-comment">// String regStr = &quot;^[0-9][a-z]*&quot;;</span><br>        <span class="hljs-comment">//以至少 1 个数字开头, 必须以至少一个小写字母结束</span><br>        <span class="hljs-comment">//String regStr = &quot;^[0-9]+\\-[a-z]+$&quot;;</span><br><br>        <span class="hljs-comment">//表示匹配边界的 abc[这里的边界是指：被匹配的字符串最后, 也可以是空格的子字符串的后面]</span><br>        <span class="hljs-comment">//String regStr = &quot;abc\\b&quot;;</span><br><br>        <span class="hljs-comment">//和\\b 的含义刚刚相反</span><br>        <span class="hljs-type">String</span> <span class="hljs-variable">regStr</span> <span class="hljs-operator">=</span><span class="hljs-string">&quot;abc\\B&quot;</span>;<br><br>        <span class="hljs-type">Pattern</span> <span class="hljs-variable">pattern</span> <span class="hljs-operator">=</span> Pattern.compile(regStr);<br>        <span class="hljs-type">Matcher</span> <span class="hljs-variable">matcher</span> <span class="hljs-operator">=</span> pattern.matcher(content);<br>        <span class="hljs-keyword">while</span> (matcher.find()) &#123;<br>            System.out.println(<span class="hljs-string">&quot;找到：&quot;</span> + matcher.group(<span class="hljs-number">0</span>));<br>        &#125;<br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<h4 id="分组"><a href="#分组" class="headerlink" title="分组"></a>分组</h4><p>捕获分组</p>
+<p><img src="https://trpora-1300527744.cos.ap-chongqing.myqcloud.com/img/image-20220913214948423.png" srcset="/img/loading.gif" lazyload alt="image-20220913214948423"></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.ep.regexp;<br><br><br><span class="hljs-keyword">import</span> java.util.regex.Matcher;<br><span class="hljs-keyword">import</span> java.util.regex.Pattern;<br><br><span class="hljs-comment">/***</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@author</span> dep</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@version</span> 1.0</span><br><span class="hljs-comment"> * 捕获分组</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">RegExp05</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        <span class="hljs-type">String</span> <span class="hljs-variable">content</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;abcd99996665ds45656sd4565s5&quot;</span>;<br><br>        <span class="hljs-comment">//下面就是非命名分组</span><br>        <span class="hljs-comment">// 1. matcher.group(0) 得到匹配到的字符串</span><br>        <span class="hljs-comment">// 2. matcher.group(1) 得到匹配到的字符串的第 1 个分组内容</span><br>        <span class="hljs-comment">// 3. matcher.group(2) 得到匹配到的字符串的第 2 个分组内容</span><br><br>        <span class="hljs-comment">// String regStr = &quot;(\\d\\d)(\\d\\d)&quot;;//匹配 4 个数字的字符串</span><br><br>        <span class="hljs-comment">//命名分组： 即可以给分组取名</span><br>        <span class="hljs-type">String</span> <span class="hljs-variable">regStr</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;(?&lt;g1&gt;\\d\\d)(?&lt;g2&gt;\\d\\d)&quot;</span>;<br><br>        <span class="hljs-type">Pattern</span> <span class="hljs-variable">pattern</span> <span class="hljs-operator">=</span> Pattern.compile(regStr);<br>        <span class="hljs-type">Matcher</span> <span class="hljs-variable">matcher</span> <span class="hljs-operator">=</span> pattern.matcher(content);<br>        <span class="hljs-keyword">while</span> (matcher.find()) &#123;<br>            System.out.println(<span class="hljs-string">&quot;找到=&quot;</span> + matcher.group(<span class="hljs-number">0</span>));<br>            System.out.println(<span class="hljs-string">&quot;第 1 个分组内容=&quot;</span> + matcher.group(<span class="hljs-number">1</span>));<br>            System.out.println(<span class="hljs-string">&quot;第 1 个分组内容[通过组名]=&quot;</span> + matcher.group(<span class="hljs-string">&quot;g1&quot;</span>));<br>            System.out.println(<span class="hljs-string">&quot;第 2 个分组内容=&quot;</span> + matcher.group(<span class="hljs-number">2</span>));<br>           System.out.println(<span class="hljs-string">&quot;第 2 个分组内容[通过组名]=&quot;</span> + matcher.group(<span class="hljs-string">&quot;g2&quot;</span>));<br>        &#125;<br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<p>非捕获分组</p>
+<p><img src="https://trpora-1300527744.cos.ap-chongqing.myqcloud.com/img/image-20220913221458173.png" srcset="/img/loading.gif" lazyload alt="image-20220913221458173"></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.ep.regexp;<br><br><span class="hljs-keyword">import</span> java.util.regex.Matcher;<br><span class="hljs-keyword">import</span> java.util.regex.Pattern;<br><br><span class="hljs-comment">/***</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@author</span> dep</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@version</span> 1.0</span><br><span class="hljs-comment"> * 非捕获分组,不能通过matcher.group(1)来获取，因为是非捕获分组</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">RegExp06</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        <span class="hljs-type">String</span> <span class="hljs-variable">content</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;hello 张三教育 jack 张三老师 张三同学 hello 张三学生&quot;</span>;<br>        <span class="hljs-comment">// 找到 张三教育 、张三老师、张三同学 子字符串</span><br>        <span class="hljs-comment">// String regStr = &quot;张三教育|张三老师|张三同学&quot;;</span><br>        <span class="hljs-comment">// String regStr = &quot;张三(?:教育|老师|同学)&quot;; // 等价于 张三教育|张三老师|张三同学</span><br>        <span class="hljs-comment">//String regStr = &quot;张三(?=教育|老师|同学)&quot;; // 与？：不同的是这个只输出前面</span><br><br>        <span class="hljs-type">String</span> <span class="hljs-variable">regStr</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;张三(?!教育|老师|同学)&quot;</span>; <span class="hljs-comment">// 匹配张三学生中的张三</span><br>        <span class="hljs-type">Pattern</span> <span class="hljs-variable">pattern</span> <span class="hljs-operator">=</span> Pattern.compile(regStr);<br>        <span class="hljs-type">Matcher</span> <span class="hljs-variable">matcher</span> <span class="hljs-operator">=</span> pattern.matcher(content);<br>        <span class="hljs-keyword">while</span> (matcher.find()) &#123;<br>            System.out.println(<span class="hljs-string">&quot;找到：&quot;</span> + matcher.group(<span class="hljs-number">0</span>));<br>        &#125;<br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<h4 id="非贪婪匹配"><a href="#非贪婪匹配" class="headerlink" title="非贪婪匹配"></a>非贪婪匹配</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.ep.regexp;<br><br><span class="hljs-keyword">import</span> java.util.regex.Matcher;<br><span class="hljs-keyword">import</span> java.util.regex.Pattern;<br><br><span class="hljs-comment">/***</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@author</span> dep</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@version</span> 1.0</span><br><span class="hljs-comment"> * 非贪婪匹配</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">RegExp07</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        <span class="hljs-type">String</span> <span class="hljs-variable">content</span> <span class="hljs-operator">=</span><span class="hljs-string">&quot;abc111111&quot;</span>;<br>        <span class="hljs-comment">//String regStr = &quot;\\d+&quot;; // 默认是贪婪匹配，会匹配到111111</span><br>        <span class="hljs-type">String</span> <span class="hljs-variable">regStr</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;\\d+?&quot;</span>; <span class="hljs-comment">// 非贪婪匹配</span><br>        <span class="hljs-type">Pattern</span> <span class="hljs-variable">pattern</span> <span class="hljs-operator">=</span> Pattern.compile(regStr);<br>        <span class="hljs-type">Matcher</span> <span class="hljs-variable">matcher</span> <span class="hljs-operator">=</span> pattern.matcher(content);<br>        <span class="hljs-keyword">while</span> (matcher.find()) &#123;<br>            System.out.println(<span class="hljs-string">&quot;找到 &quot;</span> + matcher.group(<span class="hljs-number">0</span>));<br>        &#125;<br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<h3 id="应用实例"><a href="#应用实例" class="headerlink" title="应用实例"></a>应用实例</h3><p><img src="https://trpora-1300527744.cos.ap-chongqing.myqcloud.com/img/image-20220913230021904.png" srcset="/img/loading.gif" lazyload alt="image-20220913230021904"></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.ep.regexp;<br><br><span class="hljs-keyword">import</span> java.util.regex.Matcher;<br><span class="hljs-keyword">import</span> java.util.regex.Pattern;<br><br><span class="hljs-comment">/***</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@author</span> dep</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@version</span> 1.0</span><br><span class="hljs-comment"> * 正则表达式应用实例</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">RegExp08</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        <span class="hljs-type">String</span> <span class="hljs-variable">content</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;https://www.bilibili.com/account/history?spm_id_from=333.1007.0.0&quot;</span>;<br>        <span class="hljs-comment">// 汉字</span><br>        <span class="hljs-comment">// String regStr = &quot;^[\\u0391-\\uffe5]+$&quot;;</span><br><br>        <span class="hljs-comment">// 邮政编码 // 要求：1.是 1-9 开头的一个六位数. 比如：123890 // 2. // 3.</span><br>        <span class="hljs-comment">// String regStr = &quot;^[1-9]\\d&#123;5&#125;$&quot;;</span><br><br>        <span class="hljs-comment">// QQ 号码 // 要求: 是 1-9 开头的一个(5 位数-10 位数) 比如: 12389 , 1345687 , 187698765</span><br>        <span class="hljs-comment">//String regStr = &quot;^[1-9]\\d&#123;4,9&#125;$&quot;;</span><br><br>        <span class="hljs-comment">// 手机号码 // 要求: 必须以 13,14,15,18 开头的 11 位数 , 比如 13588889999</span><br>        <span class="hljs-comment">// String regStr = &quot;^1[?:3|4|5|8]\\d&#123;9&#125;$&quot;;</span><br><br>        <span class="hljs-comment">// 网址</span><br>        <span class="hljs-comment">//1. 先确定 url 的开始部分 https:// |http://</span><br>       <span class="hljs-comment">// 2.然后通过 ([\w-]+\.)+[\w-]+ 匹配 www.bilibili.com</span><br>        <span class="hljs-comment">// 3. /video/BV1fh411y7R8?from=sear 匹配(\/[\w-?=&amp;/%.#]*)?</span><br>        <span class="hljs-type">String</span> <span class="hljs-variable">regStr</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;^((http|https)://)([\\w-]+\\.)+[\\w-]+(/[\\w-?=&amp;/%.#]*)?$&quot;</span>; <span class="hljs-comment">//注意：[. ? *]表示匹配就是.本身</span><br><br>        <span class="hljs-type">Pattern</span> <span class="hljs-variable">pattern</span> <span class="hljs-operator">=</span> Pattern.compile(regStr);<br>        <span class="hljs-type">Matcher</span> <span class="hljs-variable">matcher</span> <span class="hljs-operator">=</span> pattern.matcher(content);<br><br>        <span class="hljs-keyword">if</span> (matcher.find()) &#123;<br>            System.out.println(<span class="hljs-string">&quot;满足格式&quot;</span>);<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            System.out.println(<span class="hljs-string">&quot;不满足格式&quot;</span>);<br>        &#125;<br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<h3 id="正则表达式三个常用类"><a href="#正则表达式三个常用类" class="headerlink" title="正则表达式三个常用类"></a>正则表达式三个常用类</h3><h4 id="pattern类"><a href="#pattern类" class="headerlink" title="pattern类"></a>pattern类</h4><p>![image-20220913233752036&#96;](<a target="_blank" rel="noopener" href="https://trpora-1300527744.cos.ap-chongqing.myqcloud.com/img/image-20220913233752036.png">https://trpora-1300527744.cos.ap-chongqing.myqcloud.com/img/image-20220913233752036.png</a>)</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.ep.regexp;<br><br><span class="hljs-keyword">import</span> java.util.regex.Pattern;<br><br><span class="hljs-comment">/***</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@author</span> dep</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@version</span> 1.0</span><br><span class="hljs-comment"> * 演示 matches 方法，用于整体匹配, 在验证输入的字符串是否满足条件使用</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">PatternMethod</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br><br>        <span class="hljs-type">String</span> <span class="hljs-variable">content</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;hello abc hello,&quot;</span>;<br>        <span class="hljs-type">String</span> <span class="hljs-variable">regStr</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;hello.*&quot;</span>;<br>        <span class="hljs-type">boolean</span> <span class="hljs-variable">matches</span> <span class="hljs-operator">=</span> Pattern.matches(regStr, content);<br>        <span class="hljs-keyword">if</span> (matches) &#123;<br>            System.out.println(<span class="hljs-string">&quot;整体匹配成功&quot;</span>);<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            System.out.println(<span class="hljs-string">&quot;匹配不成功&quot;</span>);<br>        &#125;<br><br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<h4 id="Matcher类"><a href="#Matcher类" class="headerlink" title="Matcher类"></a>Matcher类</h4><p><img src="https://trpora-1300527744.cos.ap-chongqing.myqcloud.com/img/image-20220913234707488.png" srcset="/img/loading.gif" lazyload alt="image-20220913234707488"></p>
+<p><img src="https://trpora-1300527744.cos.ap-chongqing.myqcloud.com/img/image-20220913234742655.png" srcset="/img/loading.gif" lazyload alt="image-20220913234742655"></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.ep.regexp;<br><br><span class="hljs-keyword">import</span> java.util.regex.Matcher;<br><span class="hljs-keyword">import</span> java.util.regex.Pattern;<br><br><span class="hljs-comment">/***</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@author</span> dep</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@version</span> 1.0</span><br><span class="hljs-comment"> * Matcher 类的常用方法</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">MatcherMethod</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        <span class="hljs-type">String</span> <span class="hljs-variable">content</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;hello edu jack edutom hello smith hello&quot;</span>;<br>        <span class="hljs-type">String</span> <span class="hljs-variable">regStr</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;hello&quot;</span>;<br><br>        <span class="hljs-type">Pattern</span> <span class="hljs-variable">pattern</span> <span class="hljs-operator">=</span> Pattern.compile(regStr);<br>        <span class="hljs-type">Matcher</span> <span class="hljs-variable">matcher</span> <span class="hljs-operator">=</span> pattern.matcher(content);<br><br>        <span class="hljs-keyword">while</span> (matcher.find()) &#123;<br>            System.out.println(<span class="hljs-string">&quot;================&quot;</span>);<br>            System.out.println(matcher.start());<br>            System.out.println(matcher.end());<br>            System.out.println(<span class="hljs-string">&quot;找到：&quot;</span> + content.substring(matcher.start(), matcher.end()));<br>        &#125;<br><br>        <span class="hljs-comment">//整体匹配方法，常用于，去校验某个字符串是否满足某个规则</span><br>        System.out.println(<span class="hljs-string">&quot;整体匹配：&quot;</span> + matcher.matches());<br><br>        <span class="hljs-comment">//完成如果 content 有 hello 替换成 你好</span><br>        <span class="hljs-type">String</span> <span class="hljs-variable">newContent</span> <span class="hljs-operator">=</span> matcher.replaceAll(<span class="hljs-string">&quot;你好&quot;</span>);<br>        <span class="hljs-comment">//注意：返回的字符串才是替换后的字符串 原来的 content 不变化</span><br>        System.out.println(newContent);<br><br>    &#125;<br><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="反向引用"><a href="#反向引用" class="headerlink" title="反向引用"></a>反向引用</h3><p><img src="https://trpora-1300527744.cos.ap-chongqing.myqcloud.com/img/image-20220914141942186.png" srcset="/img/loading.gif" lazyload alt="image-20220914141942186"></p>
+<p><img src="https://trpora-1300527744.cos.ap-chongqing.myqcloud.com/img/image-20220914142011785.png" srcset="/img/loading.gif" lazyload alt="image-20220914142011785"></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.ep.regexp;<br><br><span class="hljs-keyword">import</span> java.util.regex.Matcher;<br><span class="hljs-keyword">import</span> java.util.regex.Pattern;<br><br><span class="hljs-comment">/***</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@author</span> dep</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@version</span> 1.0</span><br><span class="hljs-comment"> * 反向引用</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">RegExp09</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        <span class="hljs-comment">// String content = &quot;abc1122333444555asd4545455555sdad6699dsd2332&quot;;</span><br>        <span class="hljs-type">String</span> <span class="hljs-variable">content</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;12321-333999111&quot;</span>;<br>        <span class="hljs-comment">// 匹配两个连续的相同数字  (\\d)\\1</span><br>        <span class="hljs-comment">// String regStr = &quot;(\\d)\\1&quot;;</span><br><br>        <span class="hljs-comment">//  匹配5个连续的相同数字  (\\d)\\1&#123;4&#125;</span><br>       <span class="hljs-comment">//  String regStr = &quot;(\\d)\\1&#123;4&#125;&quot;;</span><br>        <span class="hljs-comment">// 匹配个位与千位相同，十位与百位相同  (\\d)(\\d)\\2\\1</span><br>        <span class="hljs-comment">// String regStr = &quot;(\\d)(\\d)\\2\\1&quot;;</span><br><br>        <span class="hljs-comment">//请在字符串中检索商品编号.形式如:12321-333999111这样的号码,</span><br>        <span class="hljs-comment">// 要求满足前面是一个五位数,然后一个-号,然后是一个九位数,连续的每三位要相同</span><br>         <span class="hljs-type">String</span> <span class="hljs-variable">regStr</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;\\d&#123;5&#125;-(\\d)\\1&#123;2&#125;(\\d)\\2&#123;2&#125;(\\d)\\3&#123;2&#125;&quot;</span>;<br><br><br>        <span class="hljs-type">Pattern</span> <span class="hljs-variable">pattern</span> <span class="hljs-operator">=</span> Pattern.compile(regStr);<br>        <span class="hljs-type">Matcher</span> <span class="hljs-variable">matcher</span> <span class="hljs-operator">=</span> pattern.matcher(content);<br>        <span class="hljs-keyword">while</span> (matcher.find()) &#123;<br>            System.out.println(<span class="hljs-string">&quot;找到：&quot;</span> + matcher.group(<span class="hljs-number">0</span>));<br>        &#125;<br><br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.ep.regexp;<br><br><span class="hljs-keyword">import</span> java.util.regex.Matcher;<br><span class="hljs-keyword">import</span> java.util.regex.Pattern;<br><br><span class="hljs-comment">/***</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@author</span> dep</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@version</span> 1.0</span><br><span class="hljs-comment"> * 外部反向引用</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">RegExp10</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        <span class="hljs-type">String</span> <span class="hljs-variable">content</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;我....我要....学学学学....编程 java!&quot;</span>;<br><br>        <span class="hljs-comment">//1. 去掉所有的.</span><br>        <span class="hljs-type">Pattern</span> <span class="hljs-variable">pattern</span> <span class="hljs-operator">=</span> Pattern.compile(<span class="hljs-string">&quot;\\.&quot;</span>);<br>        <span class="hljs-type">Matcher</span> <span class="hljs-variable">matcher</span> <span class="hljs-operator">=</span> pattern.matcher(content);<br>        content = matcher.replaceAll(<span class="hljs-string">&quot;&quot;</span>);<br><br>        <span class="hljs-comment">//2. 去掉重复的字 我我要学学学学编程 java!</span><br>        <span class="hljs-comment">// 思路</span><br>        <span class="hljs-comment">// (1) 使用 (.)\\1+</span><br>        <span class="hljs-comment">// (2) 使用 反向引用$1 来替换匹配到的内容</span><br>        <span class="hljs-comment">// 注意：因为正则表达式变化，所以需要重置 matcher</span><br>        <span class="hljs-type">Pattern</span> <span class="hljs-variable">pattern1</span> <span class="hljs-operator">=</span> Pattern.compile(<span class="hljs-string">&quot;(.)\\1+&quot;</span>); <span class="hljs-comment">//分组的捕获内容记录到$1</span><br>        content = pattern1.matcher(content).replaceAll(<span class="hljs-string">&quot;$1&quot;</span>); <span class="hljs-comment">//使用 反向引用$1 来替换匹配到的内容</span><br>        System.out.println(content);<br><br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<h3 id="String-类中使用正则表达式"><a href="#String-类中使用正则表达式" class="headerlink" title="String 类中使用正则表达式"></a>String 类中使用正则表达式</h3><p>替换功能</p>
+<p>String 类 public String replaceAll(String regex,String replacement)</p>
+<p>判断功能 </p>
+<p>String 类 public boolean matches(String regex){} **&#x2F;&#x2F;**使用 Pattern 和 Matcher 类</p>
+<p>分割功能</p>
+<p>String 类 public String[] split(String regex)</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.ep.regexp;<br><br><span class="hljs-comment">/***</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@author</span> dep</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@version</span> 1.0</span><br><span class="hljs-comment"> * String 类中使用正则表达式</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">StringReg</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        <span class="hljs-type">String</span> <span class="hljs-variable">content</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;2000 年 5 月，JDK1.3、JDK1.4 和 J2SE1.3 相继发布，&quot;</span> +<br>                <span class="hljs-string">&quot;几周后其&quot;</span> + <span class="hljs-string">&quot;获得了 Apple 公司 Mac OS X 的工业标准的支持。&quot;</span> +<br>                <span class="hljs-string">&quot;2001 年 9 月 24 日，J2EE1.3 发&quot;</span> + <span class="hljs-string">&quot;布。&quot;</span> + <span class="hljs-string">&quot;2002 年 2 月 26 日，J2SE1.4 发布。&quot;</span> +<br>                <span class="hljs-string">&quot;自此 Java 的计算能力有了大幅提升&quot;</span>;<br>        <span class="hljs-comment">//使用正则表达式方式，将 JDK1.3 和 JDK1.4 替换成 JDK</span><br>        <span class="hljs-type">String</span> <span class="hljs-variable">newContent</span> <span class="hljs-operator">=</span> content.replaceAll(<span class="hljs-string">&quot;JDK1.3|JDK1.4&quot;</span>, <span class="hljs-string">&quot;JDK&quot;</span>);<br>        System.out.println(newContent);<br><br>        <span class="hljs-comment">//要求 验证一个 手机号， 要求必须是以 138 139 开头的</span><br>        <span class="hljs-type">String</span> <span class="hljs-variable">content1</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;13888889999&quot;</span>;<br>        <span class="hljs-type">boolean</span> <span class="hljs-variable">matches</span> <span class="hljs-operator">=</span> content1.matches(<span class="hljs-string">&quot;1(38|39)\\d&#123;8&#125;&quot;</span>);<br>        <span class="hljs-keyword">if</span> (matches) &#123;<br>            System.out.println(<span class="hljs-string">&quot;格式正确&quot;</span>);<br>        &#125;<span class="hljs-keyword">else</span> &#123;<br>            System.out.println(<span class="hljs-string">&quot;格式不正确&quot;</span>);<br>        &#125;<br><br>        <span class="hljs-comment">//要求按照 # 或者 - 或者 ~ 或者 数字 来分割</span><br>        content = <span class="hljs-string">&quot;hello#abc-jack12smith~北京&quot;</span>;<br>        String[] split = content.split(<span class="hljs-string">&quot;#|-|~|\\d+&quot;</span>);<br>        <span class="hljs-keyword">for</span> (String str : split) &#123;<br>            System.out.println(str);<br>        &#125;<br><br><br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h2><h3 id="一、校验数字的表达式"><a href="#一、校验数字的表达式" class="headerlink" title="一、校验数字的表达式"></a>一、校验数字的表达式</h3><p>1 数字：<code>^[0-9]*$</code><br>2 n位的数字：<code>^\d&#123;n&#125;$</code><br>3 至少n位的数字：<code>^\d&#123;n,&#125;$</code><br>4 m-n位的数字：<code>^\d&#123;m,n&#125;$</code><br>5 零和非零开头的数字：<code>^(0|[1-9][0-9]*)$</code><br>6 非零开头的最多带两位小数的数字：<code>^([1-9][0-9]*)+(.[0-9]&#123;1,2&#125;)?$</code><br>7 带1-2位小数的正数或负数：<code>^(\-)?\d+(\.\d&#123;1,2&#125;)?$</code><br>8 正数、负数、和小数：<code>^(\-|\+)?\d+(\.\d+)?$</code><br>9 有两位小数的正实数：<code>^[0-9]+(.[0-9]&#123;2&#125;)?$</code><br>10 有1~3位小数的正实数：<code>^[0-9]+(.[0-9]&#123;1,3&#125;)?$</code><br>11 非零的正整数：<code>^[1-9]\d*$ 或 ^([1-9][0-9]*)&#123;1,3&#125;$ 或 ^\+?[1-9][0-9]*$</code><br>12 非零的负整数：<code>^\-[1-9][]0-9&quot;*$ 或 ^-[1-9]\d*$</code><br>13 非负整数：<code>^\d+$ 或 ^[1-9]\d*|0$</code><br>14 非正整数：<code>^-[1-9]\d*|0$ 或 ^((-\d+)|(0+))$</code><br>15 非负浮点数：<code>^\d+(\.\d+)?$ 或 ^[1-9]\d*\.\d*|0\.\d*[1-9]\d*|0?\.0+|0$</code><br>16 非正浮点数：<code>^((-\d+(\.\d+)?)|(0+(\.0+)?))$ 或 ^(-([1-9]\d*\.\d*|0\.\d*[1-9]\d*))|0?\.0+|0$</code><br>17 正浮点数：<code>^[1-9]\d*\.\d*|0\.\d*[1-9]\d*$ 或 ^(([0-9]+\.[0-9]*[1-9][0-9]*)|([0-9]*[1-9][0-9]*\.[0-9]+)|([0-9]*[1-9][0-9]*))$</code><br>18 负浮点数：<code>^-([1-9]\d*\.\d*|0\.\d*[1-9]\d*)$ 或 ^(-(([0-9]+\.[0-9]*[1-9][0-9]*)|([0-9]*[1-9][0-9]*\.[0-9]+)|([0-9]*[1-9][0-9]*)))$</code><br>19 浮点数：<code>^(-?\d+)(\.\d+)?$ 或 ^-?([1-9]\d*\.\d*|0\.\d*[1-9]\d*|0?\.0+|0)$</code></p>
+<p>二、校验字符的表达式</p>
+<p>1 汉字：<code>^[\u4e00-\u9fa5]&#123;0,&#125;$</code><br>2 英文和数字：<code>^[A-Za-z0-9]+$ 或 ^[A-Za-z0-9]&#123;4,40&#125;$</code><br>3 长度为3-20的所有字符：<code>^.&#123;3,20&#125;$</code><br>4 由26个英文字母组成的字符串：<code>^[A-Za-z]+$</code><br>5 由26个大写英文字母组成的字符串：<code>^[A-Z]+$</code><br>6 由26个小写英文字母组成的字符串：<code>^[a-z]+$</code><br>7 由数字和26个英文字母组成的字符串：<code>^[A-Za-z0-9]+$</code><br>8 由数字、26个英文字母或者下划线组成的字符串：<code>^\w+$ 或 ^\w&#123;3,20&#125;$</code><br>9 中文、英文、数字包括下划线：<code>^[\u4E00-\u9FA5A-Za-z0-9_]+$</code><br>10 中文、英文、数字但不包括下划线等符号：<code>^[\u4E00-\u9FA5A-Za-z0-9]+$ 或 ^[\u4E00-\u9FA5A-Za-z0-9]&#123;2,20&#125;$</code><br>11 可以输入含有^%&amp;’,;&#x3D;?$&quot;等字符：<code>[^%&amp;&#39;,;=?$\x22]+</code><br>12 禁止输入含有<del>的字符：&#96;&#96;[^</del>\x22]+&#96;&#96;</p>
+<p>三、特殊需求表达式</p>
+<p>1 Email地址：<code>^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$</code><br>2 域名：<code>[a-zA-Z0-9][-a-zA-Z0-9]&#123;0,62&#125;(/.[a-zA-Z0-9][-a-zA-Z0-9]&#123;0,62&#125;)+/.?</code><br>3 InternetURL：<code>[a-zA-z]+://[^\s]* 或 ^https://([\w-]+\.)+[\w-]+(/[\w-./?%&amp;=]*)?$</code><br>4 手机号码：<code>^(13[0-9]|14[5|7]|15[0|1|2|3|5|6|7|8|9]|18[0|1|2|3|5|6|7|8|9])\d&#123;8&#125;$</code><br>5 电话号码(“XXX-XXXXXXX”、”XXXX-XXXXXXXX”、”XXX-XXXXXXX”、”XXX-XXXXXXXX”、”XXXXXXX”和”XXXXXXXX)：<code>^(\(\d&#123;3,4&#125;-)|\d&#123;3.4&#125;-)?\d&#123;7,8&#125;$ </code><br>6 国内电话号码(0511-4405222、021-87888822)：<code>\d&#123;3&#125;-\d&#123;8&#125;|\d&#123;4&#125;-\d&#123;7&#125;</code><br>7 身份证号：<br>        15或18位身份证：<code>^\d&#123;15&#125;|\d&#123;18&#125;$</code><br>        15位身份证：<code>^[1-9]\d&#123;7&#125;((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d&#123;3&#125;$</code><br>        18位身份证：<code>^[1-9]\d&#123;5&#125;[1-9]\d&#123;3&#125;((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d&#123;4&#125;$</code><br>8 短身份证号码(数字、字母x结尾)：<code>^([0-9])&#123;7,18&#125;(x|X)?$ 或 ^\d&#123;8,18&#125;|[0-9x]&#123;8,18&#125;|[0-9X]&#123;8,18&#125;?$</code><br>9 帐号是否合法(字母开头，允许5-16字节，允许字母数字下划线)：<code>^[a-zA-Z][a-zA-Z0-9_]&#123;4,15&#125;$</code><br>10 密码(以字母开头，长度在6~18之间，只能包含字母、数字和下划线)：<code>^[a-zA-Z]\w&#123;5,17&#125;$</code><br>11 强密码(必须包含大小写字母和数字的组合，不能使用特殊字符，长度在8-10之间)：<code>^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).&#123;8,10&#125;$ </code><br>12 日期格式：<code>^\d&#123;4&#125;-\d&#123;1,2&#125;-\d&#123;1,2&#125;</code><br>13 一年的12个月(01～09和1～12)：<code>^(0?[1-9]|1[0-2])$</code><br>14 一个月的31天(01～09和1～31)：<code>^((0?[1-9])|((1|2)[0-9])|30|31)$ </code><br>15 钱的输入格式：<br>16 1.有四种钱的表示形式我们可以接受:”10000.00” 和 “10,000.00”, 和没有 “分” 的 “10000” 和 “10,000”：<code>^[1-9][0-9]*$ </code><br>17 2.这表示任意一个不以0开头的数字,但是,这也意味着一个字符”0”不通过,所以我们采用下面的形式：<code>^(0|[1-9][0-9]*)$ </code><br>18 3.一个0或者一个不以0开头的数字.我们还可以允许开头有一个负号：<code>^(0|-?[1-9][0-9]*)$ </code><br>19 4.这表示一个0或者一个可能为负的开头不为0的数字.让用户以0开头好了.把负号的也去掉,因为钱总不能是负的吧.下面我们要加的是说明可能的小数部分：<code>^[0-9]+(.[0-9]+)?$ </code><br>20 5.必须说明的是,小数点后面至少应该有1位数,所以”10.”是不通过的,但是 “10” 和 “10.2” 是通过的：<code>^[0-9]+(.[0-9]&#123;2&#125;)?$ </code><br>21 6.这样我们规定小数点后面必须有两位,如果你认为太苛刻了,可以这样：<code>^[0-9]+(.[0-9]&#123;1,2&#125;)?$ </code><br>22 7.这样就允许用户只写一位小数.下面我们该考虑数字中的逗号了,我们可以这样：<code>^[0-9]&#123;1,3&#125;(,[0-9]&#123;3&#125;)*(.[0-9]&#123;1,2&#125;)?$ </code><br>23 8.1到3个数字,后面跟着任意个 逗号+3个数字,逗号成为可选,而不是必须：<code>^([0-9]+|[0-9]&#123;1,3&#125;(,[0-9]&#123;3&#125;)*)(.[0-9]&#123;1,2&#125;)?$ </code><br>24 备注：这就是最终结果了,别忘了”+”可以用”<em>“替代如果你觉得空字符串也可以接受的话(奇怪,为什么?)最后,别忘了在用函数时去掉去掉那个反斜杠,一般的错误都在这里<br>25 xml文件：<code>^([a-zA-Z]+-?)+[a-zA-Z0-9]+\\.[x|X][m|M][l|L]$</code><br>26 中文字符的正则表达式：<code>[\u4e00-\u9fa5]</code><br>27 双字节字符：<code>[^\x00-\xff]</code> (包括汉字在内，可以用来计算字符串的长度(一个双字节字符长度计2，ASCII字符计1))<br>28 空白行的正则表达式：\n\s</em>\r (可以用来删除空白行)<br>29 HTML标记的正则表达式：<code>&lt;(\S*?)[^&gt;]*&gt;.*?|&lt;.*? /&gt;</code> (网上流传的版本太糟糕，上面这个也仅仅能部分，对于复杂的嵌套标记依旧无能为力)<br>30 首尾空白字符的正则表达式：<code>^\s*|\s*$或(^\s*)|(\s*$)</code> (可以用来删除行首行尾的空白字符(包括空格、制表符、换页符等等)，非常有用的表达式)<br>31 腾讯QQ号：<code>[1-9][0-9]&#123;4,&#125;</code> (腾讯QQ号从10000开始)<br>32 中国邮政编码：<code>[1-9]\d&#123;5&#125;(?!\d) </code>(中国邮政编码为6位数字)<br>33 IP地址：<code>\d+\.\d+\.\d+\.\d+</code> (提取IP地址时有用)</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">#正则表达式</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>正则表达式</div>
+      <div>http://example.com/2022/09/18/正则表达式/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Deng ErPu</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年9月18日</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>许可协议</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/09/23/%E7%BD%91%E7%BB%9C%E7%88%AC%E8%99%AB/" title="网络爬虫">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">网络爬虫</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/09/15/Java%208%E6%96%B0%E7%89%B9%E6%80%A7/" title="Java8新特性">
+                        <span class="hidden-mobile">Java8新特性</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
