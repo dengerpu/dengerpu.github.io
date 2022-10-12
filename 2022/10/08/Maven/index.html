@@ -27,7 +27,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/img/article/maven.png">
 <meta property="article:published_time" content="2022-10-08T03:03:00.000Z">
-<meta property="article:modified_time" content="2022-10-08T03:04:01.482Z">
+<meta property="article:modified_time" content="2022-10-08T03:09:18.169Z">
 <meta property="article:author" content="Deng ErPu">
 <meta property="article:tag" content="Maven">
 <meta name="twitter:card" content="summary_large_image">
@@ -430,7 +430,7 @@
 <p>这个自动导入<strong>一定要开启</strong>，因为 Project、Module 新创建或 pom.xml 每次修改时都应该让 IDEA 重新加载 Maven 信息。这对 Maven 目录结构认定、Java 源程序编译、依赖 jar 包的导入都有非常关键的影响。</p>
 <p>另外也可以通过 IDEA 的 Settings 设置来开启：</p>
 <p><img src="https://trpora-1300527744.cos.ap-chongqing.myqcloud.com/img/img004.e823213d.png" srcset="/img/loading.gif" lazyload alt="images"></p>
-<h2 id="5-3配置Maven信息"><a href="#5-3配置Maven信息" class="headerlink" title="5.3配置Maven信息"></a>5.3配置Maven信息</h2><p>每次创建 Project 后都需要设置 Maven 家目录位置，否则 IDEA 将使用内置的 Maven 核心程序（不稳定）并使用默认的本地仓库位置。这样一来，我们在命令行操作过程中已下载好的 jar 包就白下载了，默认的本地仓库通常在 C 盘，还影响系统运行。</p>
+<h2 id="5-3、配置Maven信息"><a href="#5-3、配置Maven信息" class="headerlink" title="5.3、配置Maven信息"></a>5.3、配置Maven信息</h2><p>每次创建 Project 后都需要设置 Maven 家目录位置，否则 IDEA 将使用内置的 Maven 核心程序（不稳定）并使用默认的本地仓库位置。这样一来，我们在命令行操作过程中已下载好的 jar 包就白下载了，默认的本地仓库通常在 C 盘，还影响系统运行。</p>
 <p>配置之后，IDEA 会根据我们在这里指定的 Maven 家目录自动识别到我们在 settings.xml 配置文件中指定的本地仓库。</p>
 <p><img src="https://trpora-1300527744.cos.ap-chongqing.myqcloud.com/img/img033.39a65cee.png" srcset="/img/loading.gif" lazyload alt="./images"></p>
 <h1 id="6-Maven-常用命令"><a href="#6-Maven-常用命令" class="headerlink" title="6. Maven 常用命令"></a>6. Maven 常用命令</h1><p>我们可以在 cmd 中通过一系列的 maven 命令来对我们的 maven-helloworld 工程进行编译、测试、运行、打包、安装、部署。</p>
@@ -439,10 +439,10 @@
 <p><img src="https://trpora-1300527744.cos.ap-chongqing.myqcloud.com/img/image-20221006132327772.png" srcset="/img/loading.gif" lazyload alt="image-20221006132327772"></p>
 <p>查看 target 目录，class 文件已生成，编译完成。</p>
 <p><img src="https://trpora-1300527744.cos.ap-chongqing.myqcloud.com/img/image-20221006132349285.png" srcset="/img/loading.gif" lazyload alt="image-20221006132349285"></p>
-<h2 id="6-2test"><a href="#6-2test" class="headerlink" title="6.2test"></a>6.2test</h2><p>test 是 maven 工程的测试命令 mvn test，会执行 src&#x2F;test&#x2F;java 下的单元测试类。</p>
+<h2 id="6-2-test"><a href="#6-2-test" class="headerlink" title="6.2 test"></a>6.2 test</h2><p>test 是 maven 工程的测试命令 mvn test，会执行 src&#x2F;test&#x2F;java 下的单元测试类。</p>
 <p>cmd 执行 mvn test 执行 src&#x2F;test&#x2F;java 下单元测试类，下图为测试结果，运行 1 个测试用例，全部成功。</p>
 <p><img src="https://trpora-1300527744.cos.ap-chongqing.myqcloud.com/img/image-20221006132605451.png" srcset="/img/loading.gif" lazyload alt="image-20221006132605451"></p>
-<h2 id="6-3clean"><a href="#6-3clean" class="headerlink" title="6.3clean"></a>6.3clean</h2><p>clean 是 maven 工程的清理命令，执行 clean 会删除 target 目录及内容。</p>
+<h2 id="6-3-clean"><a href="#6-3-clean" class="headerlink" title="6.3 clean"></a>6.3 clean</h2><p>clean 是 maven 工程的清理命令，执行 clean 会删除 target 目录及内容。</p>
 <h2 id="6-4-package"><a href="#6-4-package" class="headerlink" title="6.4 package"></a>6.4 package</h2><p>package 是 maven 工程的打包命令，对于 java 工程执行 package 打成 jar 包，对于 web 工程打成 war包。</p>
 <h2 id="6-5-install"><a href="#6-5-install" class="headerlink" title="6.5  install"></a>6.5  install</h2><p>install 是 maven 工程的安装命令，执行 install 将 maven 打成 jar 包或 war 包发布到本地仓库。</p>
 <p>从运行结果中，可以看出：当后面的命令执行时，前面的操作过程也都会自动执行，</p>
@@ -716,6 +716,12 @@
                 <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/2022/10/12/Java/" title="">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile"></span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">
